@@ -1,0 +1,64 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <%- unless employee_context? -%>
+          <th scope="col">Employee</th>
+        <%- end -%>
+        <th scope="col">Type</th>
+        <th scope="col">Salary Type</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Period</th>
+        <th scope="col">Description</th>
+        <th scope="col">In Payslip?</th>
+        <th scope="col">Created On</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @advances.each do |advance| %>
+        <tr>
+          <%- if !employee_context? -%>
+            <td><%= link_to advance.employee.try(:name), edit_employee_path(id: advance.employee_id) if advance.employee_id %></td>
+          <%- end -%>
+          <td><%= advance.advance_type.humanize %></td>
+          <td><%= advance.salary_type.humanize %></td>
+          <td><%= number_to_currency advance.amount %></td>
+          <td><%= display_date_range advance.date_range %></td>
+          <td><%= truncate advance.description %></td>
+          <td>
+            <%- if advance.included_in_payslip? -%>
+              <%= link_to 'Yes', nesting_aware_salary_payslip_path(advance.salary_payslip_id) %>
+            <%- else -%>
+              No
+            <%- end -%>
+          </td>
+          <td><%= l advance.created_at, format: :short %></td>
+          <td>
+            <%- if !advance.included_in_payslip? -%>
+              <div class="btn-group mr-1" role="group">
+                <%= link_to 'Edit', nesting_aware_edit_salary_advance_path(advance),
+                  class: 'btn btn-sm btn-secondary' %>
+              </div>
+              <div class="btn-group" role="group">
+                <%= link_to 'Delete', nesting_aware_salary_advance_path(advance),
+                  remote: true,
+                  method: :delete,
+                  data: {
+                    confirm: 'Are you sure you want to delete this record?'
+                  },
+                  class: 'btn btn-sm btn-danger' %>
+              </div>
+            <%- else -%>
+              <%= link_to 'View', nesting_aware_edit_salary_advance_path(advance),
+                class: 'btn btn-sm btn-light' %>
+            <%- end -%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<nav aria-label="Salary advances list navigation">
+  <%= pagy_nav_bootstrap(@pagy).html_safe %>
+</nav>

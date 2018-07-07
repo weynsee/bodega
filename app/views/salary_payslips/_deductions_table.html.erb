@@ -1,0 +1,26 @@
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created On</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="table-success">
+      <td colspan="3"></td>
+      <td><%= number_to_currency @payslip.total_deductions %></td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <%- @payslip.applicable_advances.each do |advance| -%>
+      <tr>
+        <td><%= advance.advance_type.humanize %></td>
+        <td><%= truncate advance.description %></td>
+        <td><%= link_to l(advance.created_at, format: :short), edit_employee_salary_advance_path(@employee, advance) %></td>
+        <td><%= number_to_currency advance.amount %></td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>

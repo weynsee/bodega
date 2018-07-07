@@ -1,0 +1,22 @@
+@import "rails_bootstrap_forms";
+@import "flatly/variables";
+@import "bootstrap";
+@import "flatly/bootswatch";
+
+body {
+  padding-top: 5rem;
+}
+
+.tab-content {
+  margin: 1.5rem;
+}
+
+.printer-input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+#rest {
+  max-width: 95%;
+}

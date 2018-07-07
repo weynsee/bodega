@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-lg-12">
+    <%= render 'employees/nav_pills' %>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <div class="row">
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Generate salary payslip for <%= @employee.name %></h4>
+            <%= render 'form' %>
+            <%- if @payslip.valid? && @payslip.applicable_advances.present? -%>
+              <hr class="mb-4">
+              <h4 class="mb-3">Deductions</h4>
+              <%= render 'deductions_table' %>
+              </hr>
+            <%- end -%>
+          </div>
+          <%- if @payslip.valid? -%>
+            <div class="col-md-4 order-md-2 mb-4">
+              <h4 class="d-flex justify-content-end align-items-center mb-3">
+                <span class="text-muted"><%= format_date_range(@payslip.date_range) %></span>
+              </h4>
+              <%= render 'total' %>
+            </div>
+          <%- end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

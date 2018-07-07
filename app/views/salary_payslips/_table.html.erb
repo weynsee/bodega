@@ -1,0 +1,47 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <%- unless employee_context? -%>
+          <th scope="col">Employee</th>
+        <%- end -%>
+        <th scope="col">Salary Type</th>
+        <th scope="col">Period</th>
+        <th scope="col">Total</th>
+        <th scope="col">Generated On</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payslips.each do |payslip| %>
+        <tr>
+          <%- if !employee_context? -%>
+            <td><%= link_to payslip.employee.try(:name), edit_employee_path(id: payslip.employee_id) if payslip.employee_id %></td>
+          <%- end -%>
+          <td><%= payslip.salary_type.humanize %></td>
+          <td><%= display_date_range payslip.date_range %></td>
+          <td><%= number_to_currency payslip.total %></td>
+          <td><%= l payslip.created_at, format: :short %></td>
+          <td>
+            <div class="btn-group mr-1" role="group">
+              <%= link_to 'View', nesting_aware_salary_payslip_path(payslip),
+                class: 'btn btn-sm btn-light' %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to 'Delete', nesting_aware_salary_payslip_path(payslip),
+                remote: true,
+                method: :delete,
+                data: {
+                  confirm: 'Are you sure you want to delete this payslip?'
+                },
+                class: 'btn btn-sm btn-danger' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<nav aria-label="Salary payslips list navigation">
+  <%= pagy_nav_bootstrap(@pagy).html_safe %>
+</nav>

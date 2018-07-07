@@ -1,0 +1,24 @@
+<%= bootstrap_form_with(
+  model: @payslip,
+  url: employee_salary_payslips_path,
+  id: 'salary-payslip-form',
+  data: { preview: true }
+) do |f| %>
+  <%= f.number_field :days_present, data: { preview: true } %>
+  <%- if @payslip.half_monthly? -%>
+    <%= f.select :applies_on, half_month_options(@payslip.date_range), {}, data: { preview: true } %>
+  <%- else -%>
+    <%= f.week_field :applies_on, value: @payslip.applies_on, data: { preview: true } %>
+  <%- end -%>
+  <div class="d-flex">
+    <div class="p-2">
+      <%= f.button 'Preview', type: :button,
+        data: { preview: new_employee_salary_payslip_path(@employee) } %>
+    </div>
+    <div class="p-2">
+      <%- if @payslip.valid? -%>
+        <%= f.primary 'Generate', data: { 'disable-with': 'Generating...' } %>
+      <%- end -%>
+    </div>
+  </div>
+<% end %>

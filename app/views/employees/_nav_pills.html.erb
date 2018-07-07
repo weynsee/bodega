@@ -1,0 +1,17 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <%= link_to 'Info', edit_employee_path(@employee), class: "nav-link #{'active' if info_pill?}" %>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link <%= 'active' if deductions_pill? %> dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Deductions</a>
+    <div class="dropdown-menu">
+      <%= link_to 'Salary Advances', employee_salary_advances_path(@employee), class: 'dropdown-item' %>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link <%= 'active' if payslips_pill? %> dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Payslips</a>
+    <div class="dropdown-menu">
+      <%= link_to 'Salary Payslips', employee_salary_payslips_path(@employee), class: 'dropdown-item' %>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,30 @@
+<div class="d-flex">
+  <div class="p-2">
+    <%= f.primary 'Save', data: { 'disable-with': 'Saving...' } %>
+  </div>
+  <%- unless @employee.new_record? -%>
+    <div class="p-2">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Advance</button>
+      <div class="dropdown-menu">
+        <%= link_to 'Salary Advance', new_employee_salary_advance_path(@employee),
+          class: 'dropdown-item' %>
+      </div>
+    </div>
+    <div class="p-2">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Payslip</button>
+      <div class="dropdown-menu">
+        <%= link_to 'Salary Payslip', new_employee_salary_payslip_path(@employee),
+          class: 'dropdown-item' %>
+      </div>
+    </div>
+    <div class="ml-auto p-2">
+      <%= link_to 'Delete', employee_path(@employee),
+        remote: true,
+        method: :delete,
+        data: {
+          confirm: 'Are you sure you want to delete this record?'
+        },
+        class: 'btn btn-danger' %>
+    </div>
+  <%- end -%>
+</div>

@@ -1,0 +1,11 @@
+<li class="list-group-item">
+  <div class="d-flex">
+    <div>
+      <%= link_to_unless print_preview?,
+        advance_billing_item_label(advance),
+        nesting_aware_edit_salary_advance_path(advance)
+      %>
+    </div>
+    <div class="ml-auto"><%= number_with_precision(advance.amount, precision: 2) %></div>
+  </div>
+</li>

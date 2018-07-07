@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="#">Bodega</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-options" aria-controls="nav-options" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="nav-options">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <%= 'active' if employee_tab? %>">
+        <%= link_to 'Employees', employees_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item  <%= 'active' if deductions_tab? %> dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="deductions-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deductions</a>
+        <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
+          <%= link_to 'Salary Advances', salary_advances_path, class: 'dropdown-item' %>
+        </div>
+      </li>
+      <li class="nav-item  <%= 'active' if payslips_tab? %> dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="deductions-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payslips</a>
+        <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
+          <%= link_to 'Salary Payslips', salary_payslips_path, class: 'dropdown-item' %>
+        </div>
+      </li>
+    </ul>
+    <%= form_tag employees_path, role: 'form', 'data-turbolinks': true, method: :get, class: 'form-inline my-2 my-lg-0', enforce_utf8: false do |f| %>
+      <%= search_field_tag :name, params[:name], placeholder: 'Search', class: 'form-control mr-sm-2', 'aria-label' => 'Search' %>
+      <%= button_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0' %>
+    <% end %>
+  </div>
+</nav>
