@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :salary_payslips, except: %i(edit update)
   end
 
-  resources :salary_advances, only: %i(index edit update destroy)
+  resources :salary_advances, only: %i(index show edit update destroy)
   resources :salary_payslips, only: %i(index show destroy)
 
   root to: 'employees#index'

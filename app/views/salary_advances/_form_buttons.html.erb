@@ -3,14 +3,23 @@
     <%= f.primary 'Save', data: { 'disable-with': 'Saving...' } %>
   </div>
   <%- unless @advance.new_record? -%>
-    <div class="ml-auto p-2">
-      <%= link_to 'Delete', employee_salary_advance_path(@advance),
-        remote: true,
-        method: :delete,
-        data: {
-          confirm: 'Are you sure you want to delete this advance?'
-        },
-        class: 'btn btn-danger' %>
+    <div class="p-2">
+      <%= link_to 'Printer-friendly version',
+        salary_advance_path(@advance),
+        target: '_blank',
+        class: 'btn btn-secondary'
+      %>
     </div>
+    <%- unless @advance.included_in_payslip? -%>
+      <div class="ml-auto p-2">
+        <%= link_to 'Delete', nesting_aware_salary_advance_path(@advance),
+          remote: true,
+          method: :delete,
+          data: {
+            confirm: 'Are you sure you want to delete this advance?'
+          },
+          class: 'btn btn-danger' %>
+      </div>
+    <%- end -%>
   <%- end -%>
 </div>

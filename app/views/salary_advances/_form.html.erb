@@ -19,9 +19,7 @@
     help: 'Short description of the advance. Will be included in receipt.',
     disabled: @advance.included_in_payslip? %>
   <%= f.text_area :notes,
-    help: 'Internal notes about the advance. Will nt be included in receipt.',
-    disabled: @advance.included_in_payslip? %>
-  <%- unless @advance.included_in_payslip? -%>
-    <%= render 'form_buttons', f: f %>
-  <%- end -%>
+    help: 'Internal notes about the advance. Will not be included in receipt.'
+  %>
+  <%= render 'form_buttons', f: f %>
 <% end %>

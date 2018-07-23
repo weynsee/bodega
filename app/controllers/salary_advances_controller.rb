@@ -9,6 +9,10 @@ class SalaryAdvancesController < ApplicationController
     render 'employees/salary_advances' if employee_context?
   end
 
+  def show
+    @advance = SalaryAdvance.find(params[:id])
+  end
+
   def new
     @advance = employee.salary_advances.new
   end
@@ -54,10 +58,14 @@ class SalaryAdvancesController < ApplicationController
 
   private
 
+  def print_preview?
+    action_name == 'show'
+  end
+
   def included_in_payslip_warning(advance)
     payslip = view_context.link_to 'payslip',
       nesting_aware_salary_payslip_path(advance.salary_payslip)
-    "This advance is included in a #{payslip} and cannot be modified."
+    "This advance is included in a #{payslip} and some fields cannot be modified."
   end
 
   def find_advance
