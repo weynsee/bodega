@@ -1,0 +1,16 @@
+<div class="d-flex p-2">
+  <div>
+    <span class="pr-2">Employee:</span>
+    <span>
+      <%- if !print_preview? -%>
+        <%= link_to model.employee.name, edit_employee_path(model.employee) %>
+      <%- else -%>
+        <%= model.employee.try(:name) %>
+      <%- end -%>
+    </span>
+  </div>
+  <div class="ml-auto">
+    <span class="pr-2">Date Issued:</span>
+    <span><%= model.created_at.strftime('%Y/%m/%d') %></span>
+  </div>
+</div>

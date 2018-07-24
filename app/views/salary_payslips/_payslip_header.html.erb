@@ -1,19 +1,4 @@
-<div class="d-flex p-2">
-  <div>
-    <span class="pr-2">Employee:</span>
-    <span>
-      <%- if !print_preview? -%>
-        <%= link_to @payslip.employee.name, edit_employee_path(@payslip.employee) %>
-      <%- else -%>
-        <%= @payslip.employee.try(:name) %>
-      <%- end -%>
-    </span>
-  </div>
-  <div class="ml-auto">
-    <span class="pr-2">Date Issued:</span>
-    <span><%= @payslip.created_at.strftime('%Y/%m/%d') %></span>
-  </div>
-</div>
+<%= render 'shared/receipt_top_row', model: @payslip %>
 <div class="d-flex p-2">
   <div>
     <span class="pr-2">Salary Type:</span>
