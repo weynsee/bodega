@@ -13,6 +13,7 @@ module ActsAsAdvanceController
     helper_method :edit_advance_path
     helper_method :advance_path
     helper_method :advance_types
+    helper_method :advance_name
   end
 
   def index
@@ -52,6 +53,8 @@ module ActsAsAdvanceController
 
   def show
     @advance = model.find(params[:id])
+
+    render template: 'shared/_advance_receipt'
   end
 
   def destroy
@@ -70,6 +73,10 @@ module ActsAsAdvanceController
   end
 
   private
+
+  def advance_name
+    singular.humanize(capitalize: false)
+  end
 
   def edit_advance_path(advance)
     public_send("nesting_aware_edit_#{singular}_path", advance)
