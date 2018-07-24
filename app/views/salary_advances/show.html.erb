@@ -16,6 +16,11 @@
             <span><%= number_to_currency(@advance.amount) %></span>
           </div>
         </div>
+        <%- if @advance.description.present? -%>
+          <div class="p-2 border">
+            <%= @advance.description %>
+          </div>
+        <%- end -%>
         <div class="p-2">
           <%= render 'shared/receipt_footer' %>
         </div>
