@@ -3,13 +3,12 @@ module ActsAsAdvanceController
   include PathHelper
 
   included do
-    NAME = self.name.gsub('Controller', '')
+    class_attribute :_base, :association, :singular, :model
 
-    ASSOCIATION = NAME.tableize
-
-    SINGULAR = ASSOCIATION.singularize
-
-    MODEL = NAME.singularize.constantize
+    self._base = self.name.gsub('Controller', '')
+    self.association = _base.tableize
+    self.singular = association.singularize
+    self.model = _base.singularize.constantize
 
     helper_method :edit_advance_path
     helper_method :advance_path
@@ -17,11 +16,11 @@ module ActsAsAdvanceController
   end
 
   def index
-    scope = employee_context? ? employee.public_send(ASSOCIATION) : MODEL.all
+    scope = employee_context? ? employee.public_send(association) : model.all
     scope = scope.order(created_at: :desc)
     @pagy, @advances = pagy(scope, page: params[:page], items: 25)
 
-    render "employees/#{ASSOCIATION}" if employee_context?
+    render "employees/#{association}" if employee_context?
   end
 
   def new
@@ -29,10 +28,10 @@ module ActsAsAdvanceController
   end
 
   def create
-    @advance = employee.public_send(ASSOCIATION).new(advance_params)
+    @advance = employee.public_send(association).new(advance_params)
 
     if @advance.save
-      path = public_send("employee_#{ASSOCIATION}_path", @employee)
+      path = public_send("employee_#{association}_path", @employee)
       redirect_to path, notice: 'Record saved successfully!'
     end
   end
@@ -46,18 +45,18 @@ module ActsAsAdvanceController
     @advance = find_advance
 
     if @advance.update_attributes(advance_params)
-      path = public_send("nesting_aware_#{ASSOCIATION}_path")
+      path = public_send("nesting_aware_#{association}_path")
       redirect_to path, notice: 'Record saved successfully!'
     end
   end
 
   def show
-    @advance = MODEL.find(params[:id])
+    @advance = model.find(params[:id])
   end
 
   def destroy
     advance = find_advance
-    path = public_send("nesting_aware_#{ASSOCIATION}_path")
+    path = public_send("nesting_aware_#{association}_path")
     if advance
       if !advance.included_in_payslip?
         advance.destroy
@@ -73,19 +72,19 @@ module ActsAsAdvanceController
   private
 
   def edit_advance_path(advance)
-    public_send("nesting_aware_edit_#{SINGULAR}_path", advance)
+    public_send("nesting_aware_edit_#{singular}_path", advance)
   end
 
   def advance_path(advance, nesting = true)
     if nesting
-      public_send("nesting_aware_#{SINGULAR}_path", advance)
+      public_send("nesting_aware_#{singular}_path", advance)
     else
-      public_send("#{SINGULAR}_path", advance)
+      public_send("#{singular}_path", advance)
     end
   end
 
   def advance_types
-    MODEL.advance_types
+    model.advance_types
   end
 
   def print_preview?
@@ -98,15 +97,15 @@ module ActsAsAdvanceController
   end
 
   def association
-    employee.public_send(ASSOCIATION)
+    employee.public_send(association)
   end
 
   def find_advance
-    employee_context? ? association.find(params[:id]) : MODEL.find(params[:id])
+    employee_context? ? association.find(params[:id]) : model.find(params[:id])
   end
 
   def advance_params
-    params.require(SINGULAR.to_sym).permit(
+    params.require(singular.to_sym).permit(
       :advance_type,
       :amount,
       :applies_on,

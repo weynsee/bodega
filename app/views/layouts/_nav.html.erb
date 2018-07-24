@@ -12,13 +12,23 @@
       <li class="nav-item  <%= 'active' if deductions_tab? %> dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="deductions-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deductions</a>
         <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
-          <%= link_to 'Salary Advances', salary_advances_path, class: 'dropdown-item' %>
+          <%- Deductions::TYPES.each do |advance| -%>
+            <%= link_to advance.to_s.titleize,
+              public_send("#{advance}_path", @employee),
+              class: 'dropdown-item'
+            %>
+          <%- end -%>
         </div>
       </li>
       <li class="nav-item  <%= 'active' if payslips_tab? %> dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="deductions-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payslips</a>
         <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
-          <%= link_to 'Salary Payslips', salary_payslips_path, class: 'dropdown-item' %>
+          <%- Payslips::TYPES.each do |payslip| -%>
+            <%= link_to payslip.to_s.titleize,
+              public_send("#{payslip}_path", @employee),
+              class: 'dropdown-item'
+            %>
+          <%- end -%>
         </div>
       </li>
     </ul>
