@@ -1,0 +1,60 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <%- unless employee_context? -%>
+          <th scope="col">Employee</th>
+        <%- end -%>
+        <th scope="col">Type</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Period</th>
+        <th scope="col">Description</th>
+        <th scope="col">In Payslip?</th>
+        <th scope="col">Created On</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @advances.each do |advance| %>
+        <tr>
+          <%- if !employee_context? -%>
+            <td><%= link_to advance.employee.try(:name), edit_employee_path(id: advance.employee_id) if advance.employee_id %></td>
+          <%- end -%>
+          <td><%= advance.advance_type.humanize %></td>
+          <td><%= number_to_currency advance.amount %></td>
+          <td><%= display_date_range advance.date_range %></td>
+          <td><%= truncate advance.description %></td>
+          <td>
+            <%- if advance.included_in_payslip? -%>
+              <%= link_to 'Yes', payslip_path_for_advance(advance) %>
+            <%- else -%>
+              No
+            <%- end -%>
+          </td>
+          <td><%= l advance.created_at, format: :short %></td>
+          <td>
+            <%- if !advance.included_in_payslip? -%>
+              <div class="btn-group btn-group-sm" role="group">
+                <%= link_to 'Edit', edit_advance_path(advance),
+                  class: 'btn btn-secondary' %>
+                <%= link_to 'Delete', advance_path(advance),
+                  remote: true,
+                  method: :delete,
+                  data: {
+                    confirm: 'Are you sure you want to delete this record?'
+                  },
+                  class: 'btn btn-danger' %>
+              </div>
+            <%- else -%>
+              <%= link_to 'Edit', edit_advance_path(advance),
+                class: 'btn btn-sm btn-secondary' %>
+            <%- end -%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<nav aria-label="Advances list navigation">
+  <%= pagy_nav_bootstrap(@pagy).html_safe %>
+</nav>

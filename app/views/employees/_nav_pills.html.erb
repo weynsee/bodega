@@ -5,13 +5,23 @@
   <li class="nav-item dropdown">
     <a class="nav-link <%= 'active' if deductions_pill? %> dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Deductions</a>
     <div class="dropdown-menu">
-      <%= link_to 'Salary Advances', employee_salary_advances_path(@employee), class: 'dropdown-item' %>
+      <%- Deductions::TYPES.each do |advance| -%>
+        <%= link_to advance.to_s.titleize,
+          public_send("employee_#{advance}_path", @employee),
+          class: 'dropdown-item'
+        %>
+      <%- end -%>
     </div>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link <%= 'active' if payslips_pill? %> dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Payslips</a>
     <div class="dropdown-menu">
-      <%= link_to 'Salary Payslips', employee_salary_payslips_path(@employee), class: 'dropdown-item' %>
+      <%- Payslips::TYPES.each do |payslip| -%>
+        <%= link_to payslip.to_s.titleize,
+          public_send("employee_#{payslip}_path", @employee),
+          class: 'dropdown-item'
+        %>
+      <%- end -%>
     </div>
   </li>
 </ul>

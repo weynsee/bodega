@@ -11,5 +11,5 @@ class SalaryAdvance < ApplicationRecord
   belongs_to :employee, optional: true
   belongs_to :salary_payslip, optional: true
 
-  alias_attribute :payslip_id, :salary_payslip_id
+  alias_attribute :payslip, :salary_payslip
 end

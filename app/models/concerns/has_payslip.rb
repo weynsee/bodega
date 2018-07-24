@@ -8,7 +8,7 @@ module HasPayslip
   end
 
   def included_in_payslip?
-    payslip_id.present?
+    payslip.present?
   end
 
   private

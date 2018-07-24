@@ -5,14 +5,14 @@
   <%- unless @advance.new_record? -%>
     <div class="p-2">
       <%= link_to 'Printer-friendly version',
-        salary_advance_path(@advance),
+        advance_path(@advance, false),
         target: '_blank',
         class: 'btn btn-secondary'
       %>
     </div>
     <%- unless @advance.included_in_payslip? -%>
       <div class="ml-auto p-2">
-        <%= link_to 'Delete', nesting_aware_salary_advance_path(@advance),
+        <%= link_to 'Delete', advance_path(@advance),
           remote: true,
           method: :delete,
           data: {

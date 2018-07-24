@@ -6,15 +6,23 @@
     <div class="p-2">
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Advance</button>
       <div class="dropdown-menu">
-        <%= link_to 'Salary Advance', new_employee_salary_advance_path(@employee),
-          class: 'dropdown-item' %>
+        <%- Deductions::TYPES.each do |advance| -%>
+          <%= link_to advance.to_s.titleize,
+            public_send("new_employee_#{advance.to_s.singularize}_path", @employee),
+            class: 'dropdown-item'
+          %>
+        <%- end -%>
       </div>
     </div>
     <div class="p-2">
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Payslip</button>
       <div class="dropdown-menu">
-        <%= link_to 'Salary Payslip', new_employee_salary_payslip_path(@employee),
-          class: 'dropdown-item' %>
+        <%- Payslips::TYPES.each do |payslip| -%>
+          <%= link_to payslip.to_s.titleize,
+            public_send("new_employee_#{payslip.to_s.singularize}_path", @employee),
+            class: 'dropdown-item'
+          %>
+        <%- end -%>
       </div>
     </div>
     <div class="ml-auto p-2">

@@ -1,4 +1,5 @@
 class RiceAllowanceAdvance < ApplicationRecord
+  include HasAppliesOn
   include HasPayslip
 
   enum advance_type: %i(regular carry_over)
@@ -9,5 +10,9 @@ class RiceAllowanceAdvance < ApplicationRecord
   belongs_to :employee, optional: true
   belongs_to :rice_allowance_payslip, optional: true
 
-  alias_attribute :payslip_id, :rice_allowance_payslip_id
+  alias_attribute :payslip, :rice_allowance_payslip
+
+  def weekly?
+    true
+  end
 end

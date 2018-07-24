@@ -17,4 +17,9 @@ module PathHelper
         public_send("edit_#{singular}_path", advance)
     end
   end
+
+  def payslip_path_for_advance(advance)
+    payslip_path = advance.payslip.class.name.tableize.singularize
+    public_send("nesting_aware_#{payslip_path}_path", advance.payslip)
+  end
 end

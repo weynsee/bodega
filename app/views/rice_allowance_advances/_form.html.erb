@@ -1,20 +1,15 @@
 <%= bootstrap_form_with(
   model: @advance,
-  url: @advance.new_record? ? employee_salary_advances_path : nesting_aware_salary_advance_path(@advance),
-  id: 'salary-advance-form'
+  url: @advance.new_record? ? employee_rice_allowance_advances_path : nesting_aware_rice_allowance_advance_path(@advance),
+  id: 'advance-form'
 ) do |f| %>
   <%= f.form_group :advance_type do %>
-    <%- SalaryAdvance.advance_types.each do |type, _| -%>
+    <%- advance_types.each do |type, _| -%>
       <%= f.radio_button :advance_type, type, inline: true, disabled: @advance.included_in_payslip? %>
     <%- end -%>
   <% end %>
   <%= f.number_field :amount, rate_field_value(@advance.amount, disabled: @advance.included_in_payslip?) %>
-  <%- if @advance.half_monthly? -%>
-    <%= f.select :applies_on, half_month_options(@advance.date_range), {},
-      disabled: @advance.included_in_payslip? %>
-  <%- else -%>
-    <%= f.week_field :applies_on, value: @advance.applies_on, disabled: @advance.included_in_payslip? %>
-  <%- end -%>
+  <%= f.week_field :applies_on, value: @advance.applies_on, disabled: @advance.included_in_payslip? %>
   <%= f.text_area :description,
     help: 'Short description of the advance. Will be included in receipt.',
     disabled: @advance.included_in_payslip? %>
