@@ -7,7 +7,8 @@
           <h4 class="mb-3"><%= format_date_range(@payslip.date_range) %> salary payslip for <%= @payslip.employee.try(:name) %></h4>
         </div>
         <%= render 'payslip_header' %>
-        <%= render 'shared/receipts/breakdown' %>
+        <%= render 'shared/receipts/breakdown',
+          rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)" %>
         <%= render 'shared/receipts/footer' %>
       </div>
     </div>

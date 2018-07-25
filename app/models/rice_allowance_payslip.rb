@@ -2,7 +2,6 @@ class RiceAllowancePayslip < ApplicationRecord
   include HasInheritableRate
   include HasAppliesOn
   include HasDeductions
-  include DateRangeHelper
 
   validates :days_present, numericality: {
     greater_than_or_equal_to: 0, less_than: 7
@@ -23,5 +22,9 @@ class RiceAllowancePayslip < ApplicationRecord
 
   def weekly?
     true
+  end
+
+  def attendance
+    :days_present
   end
 end

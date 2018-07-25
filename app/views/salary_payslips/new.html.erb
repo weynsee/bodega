@@ -10,7 +10,9 @@
             </h4>
             <%= render 'shared/payslips/details' %>
           </div>
-          <%= render 'shared/payslips/summary' %>
+          <%= render 'shared/payslips/summary',
+            rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)"
+          %>
         </div>
       </div>
     </div>

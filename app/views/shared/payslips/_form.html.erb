@@ -4,7 +4,7 @@
   id: 'payslip-form',
   data: { preview: true }
 ) do |f| %>
-  <%= f.number_field :days_present, data: { preview: true } %>
+  <%= f.number_field @payslip.attendance, data: { preview: true } %>
   <%= render 'shared/payslips/applies_on_field', f: f %>
   <div class="d-flex">
     <div class="p-2">

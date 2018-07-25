@@ -2,7 +2,6 @@ class SalaryPayslip < ApplicationRecord
   include HasInheritableRate
   include HasAppliesOn
   include HasSalaryType
-  include DateRangeHelper
   include HasDeductions
 
   validates :days_present, numericality: { greater_than_or_equal_to: 0 }
@@ -21,5 +20,9 @@ class SalaryPayslip < ApplicationRecord
 
   def applicable_advances
     employee.salary_advances.applies_for(salary_type, applies_on)
+  end
+
+  def attendance
+    :days_present
   end
 end

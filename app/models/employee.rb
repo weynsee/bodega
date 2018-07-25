@@ -24,4 +24,6 @@ class Employee < ApplicationRecord
     end
   end
   has_many :rice_allowance_payslips, dependent: :nullify
+
+  has_many :overtime_payslips, dependent: :nullify
 end

@@ -6,12 +6,12 @@
         <div class="row">
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">
-              Generate rice allowance payslip for <%= @employee.name %>
+              Generate overtime payslip for <%= @employee.name %>
             </h4>
             <%= render 'shared/payslips/details' %>
           </div>
           <%= render 'shared/payslips/summary',
-            rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)"
+            rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.hours} (hours)"
           %>
         </div>
       </div>

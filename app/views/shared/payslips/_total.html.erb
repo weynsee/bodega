@@ -2,7 +2,9 @@
   <li class="list-group-item d-flex justify-content-between lh-condensed">
     <div>
       <h6 class="my-0">Total income</h6>
-      <small class="text-muted"><%= number_with_precision(@payslip.rate, precision: 2) %> (rate) * <%= @payslip.days_present %> (days present)</small>
+      <small class="text-muted">
+        <%= rate_computation %>
+      </small>
     </div>
     <span class="text-muted"><%= number_to_currency @payslip.total_income %></span>
   </li>

@@ -11,7 +11,7 @@
     </tfoot>
     <tbody>
       <tr>
-        <td><%= number_with_precision(@payslip.rate, precision: 2) %> (rate) * <%= @payslip.days_present %> (days present)</td>
+        <td><%= rate_computation %></td>
         <td><%= number_with_precision(@payslip.total_income, precision: 2) %></td>
       </tr>
       <%- if @payslip.advances.present? -%>

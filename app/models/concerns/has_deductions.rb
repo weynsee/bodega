@@ -1,5 +1,6 @@
 module HasDeductions
   extend ActiveSupport::Concern
+  include DateRangeHelper
 
   included do
     before_validation :compute

@@ -90,10 +90,7 @@ module ActsAsPayslipController
   end
 
   def payslip_params
-    params.require(singular).permit(
-      :days_present,
-      :applies_on
-    )
+    params.require(singular).permit(*available_params)
   end
 
   def advance_kind(advance)
@@ -118,9 +115,11 @@ module ActsAsPayslipController
     params[singular].present?
   end
 
+  def available_params
+    %i(days_present applies_on)
+  end
+
   def preview_mode?
-    params[singular].present? &&
-      payslip_params[:days_present].present? &&
-      payslip_params[:applies_on].present?
+    has_params? && available_params.all? { |p| payslip_params[p].present? }
   end
 end

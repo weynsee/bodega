@@ -3,6 +3,6 @@
     <h4 class="d-flex justify-content-end align-items-center mb-3">
       <span class="text-muted"><%= format_date_range(@payslip.date_range) %></span>
     </h4>
-    <%= render 'shared/payslips/total' %>
+    <%= render 'shared/payslips/total', rate_computation: rate_computation %>
   </div>
 <%- end -%>
