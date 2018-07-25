@@ -5,8 +5,6 @@ module HasSalaryType
     enum salary_type: SalaryTypes.keys
 
     validates :salary_type, inclusion: { in: SalaryTypes.keys, message: :invalid }
-
-    after_initialize :set_salary_type
   end
 
   private

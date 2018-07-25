@@ -3,7 +3,7 @@
     <div>
       <%= link_to_unless print_preview?,
         advance_billing_item_label(advance),
-        nesting_aware_edit_salary_advance_path(advance)
+        edit_advance_path(advance, true)
       %>
     </div>
     <div class="ml-auto"><%= number_with_precision(advance.amount, precision: 2) %></div>

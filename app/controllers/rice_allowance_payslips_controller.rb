@@ -1,0 +1,3 @@
+class RiceAllowancePayslipsController < ApplicationController
+  include ActsAsPayslipController
+end

@@ -1,6 +1,6 @@
 <%= bootstrap_form_with(
   model: @advance,
-  url: @advance.new_record? ? employee_rice_allowance_advances_path : nesting_aware_rice_allowance_advance_path(@advance),
+  url: advance_form_path,
   id: 'advance-form'
 ) do |f| %>
   <%= f.form_group :advance_type do %>
@@ -9,12 +9,12 @@
     <%- end -%>
   <% end %>
   <%= f.number_field :amount, rate_field_value(@advance.amount, disabled: @advance.included_in_payslip?) %>
-  <%= f.week_field :applies_on, value: @advance.applies_on, disabled: @advance.included_in_payslip? %>
+  <%= render 'shared/advances/applies_on_field', f: f %>
   <%= f.text_area :description,
     help: 'Short description of the advance. Will be included in receipt.',
     disabled: @advance.included_in_payslip? %>
   <%= f.text_area :notes,
     help: 'Internal notes about the advance. Will not be included in receipt.'
   %>
-  <%= render 'shared/advance_form_buttons', f: f %>
+  <%= render 'shared/advances/form_buttons', f: f %>
 <% end %>

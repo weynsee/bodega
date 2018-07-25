@@ -3,12 +3,18 @@ module HasAppliesOn
 
   included do
     validates :applies_on, presence: true
-
-    after_initialize :set_default_applies_on
   end
 
   def date_range
     @date_range ||= date_range_class.new(applies_on)
+  end
+
+  def weekly?
+    false
+  end
+
+  def half_monthly?
+    false
   end
 
   private

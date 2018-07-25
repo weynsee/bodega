@@ -1,19 +1,15 @@
 <%= bootstrap_form_with(
   model: @payslip,
-  url: employee_salary_payslips_path,
-  id: 'salary-payslip-form',
+  url: payslip_form_path,
+  id: 'payslip-form',
   data: { preview: true }
 ) do |f| %>
   <%= f.number_field :days_present, data: { preview: true } %>
-  <%- if @payslip.half_monthly? -%>
-    <%= f.select :applies_on, half_month_options(@payslip.date_range), {}, data: { preview: true } %>
-  <%- else -%>
-    <%= f.week_field :applies_on, value: @payslip.applies_on, data: { preview: true } %>
-  <%- end -%>
+  <%= render 'shared/payslips/applies_on_field', f: f %>
   <div class="d-flex">
     <div class="p-2">
       <%= f.button 'Preview', type: :button,
-        data: { preview: new_employee_salary_payslip_path(@employee) } %>
+        data: { preview: new_payslip_path } %>
     </div>
     <div class="p-2">
       <%- if @payslip.valid? -%>

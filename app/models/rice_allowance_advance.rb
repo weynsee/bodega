@@ -12,6 +12,8 @@ class RiceAllowanceAdvance < ApplicationRecord
 
   alias_attribute :payslip, :rice_allowance_payslip
 
+  after_initialize :set_default_applies_on
+
   def weekly?
     true
   end

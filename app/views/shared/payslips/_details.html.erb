@@ -1,0 +1,7 @@
+<%= render 'shared/payslips/form' %>
+<%- if @payslip.valid? && @payslip.applicable_advances.present? -%>
+  <hr class="mb-4">
+    <h4 class="mb-3">Deductions</h4>
+    <%= render 'shared/payslips/deductions_table' %>
+  </hr>
+<%- end -%>

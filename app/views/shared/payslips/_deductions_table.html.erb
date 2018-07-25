@@ -18,7 +18,8 @@
       <tr>
         <td><%= advance.advance_type.humanize %></td>
         <td><%= truncate advance.description %></td>
-        <td><%= link_to l(advance.created_at, format: :short), edit_employee_salary_advance_path(@employee, advance) %></td>
+        <td><%= link_to l(advance.created_at, format: :short),
+          edit_advance_path(advance) %></td>
         <td><%= number_to_currency advance.amount %></td>
       </tr>
     <%- end -%>

@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center">
           <h4 class="mb-3"><%= format_date_range(@advance.date_range) %> <%= advance_name %> for <%= @advance.employee.try(:name) %></h4>
         </div>
-        <%= render 'shared/receipt_top_row', model: @advance %>
+        <%= render 'shared/receipts/top_row', model: @advance %>
         <div class="d-flex p-2">
           <div>
             <span class="pr-2">Advance Type:</span>
@@ -22,7 +22,7 @@
           </div>
         <%- end -%>
         <div class="p-2">
-          <%= render 'shared/receipt_footer' %>
+          <%= render 'shared/receipts/footer' %>
         </div>
       </div>
     </div>

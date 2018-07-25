@@ -14,10 +14,11 @@ module ActsAsAdvanceController
     helper_method :advance_path
     helper_method :advance_types
     helper_method :advance_name
+    helper_method :advance_form_path
   end
 
   def index
-    scope = employee_context? ? employee.public_send(association) : model.all
+    scope = employee_context? ? employee_advances : model.all
     scope = scope.order(created_at: :desc)
     @pagy, @advances = pagy(scope, page: params[:page], items: 25)
 
@@ -25,11 +26,11 @@ module ActsAsAdvanceController
   end
 
   def new
-    @advance = association.new
+    @advance = employee_advances.new
   end
 
   def create
-    @advance = employee.public_send(association).new(advance_params)
+    @advance = employee_advances.new(advance_params)
 
     if @advance.save
       path = public_send("employee_#{association}_path", @employee)
@@ -54,7 +55,7 @@ module ActsAsAdvanceController
   def show
     @advance = model.find(params[:id])
 
-    render template: 'shared/_advance_receipt'
+    render template: 'shared/advances/_receipt'
   end
 
   def destroy
@@ -73,6 +74,12 @@ module ActsAsAdvanceController
   end
 
   private
+
+  def advance_form_path
+    @advance.new_record? ?
+      public_send("employee_#{association}_path") :
+      public_send("nesting_aware_#{singular}_path", @advance)
+  end
 
   def advance_name
     singular.humanize(capitalize: false)
@@ -103,12 +110,12 @@ module ActsAsAdvanceController
     "This advance is included in a #{payslip} and some fields cannot be modified."
   end
 
-  def association
+  def employee_advances
     employee.public_send(association)
   end
 
   def find_advance
-    employee_context? ? association.find(params[:id]) : model.find(params[:id])
+    employee_context? ? employee_advances.find(params[:id]) : model.find(params[:id])
   end
 
   def advance_params

@@ -1,6 +1,6 @@
 class SalaryAdvance < ApplicationRecord
-  include HasSalaryType
   include HasAppliesOn
+  include HasSalaryType
   include HasPayslip
 
   enum advance_type: %i(regular carry_over utilities)
@@ -12,4 +12,7 @@ class SalaryAdvance < ApplicationRecord
   belongs_to :salary_payslip, optional: true
 
   alias_attribute :payslip, :salary_payslip
+
+  after_initialize :set_salary_type
+  after_initialize :set_default_applies_on
 end

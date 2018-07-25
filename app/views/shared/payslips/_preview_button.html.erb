@@ -1,0 +1,11 @@
+<%- unless print_preview? -%>
+  <div class="d-flex">
+    <div class="p-2">
+      <%= link_to 'Printer-friendly version',
+        preview_path,
+        target: '_blank',
+        class: 'btn btn-primary'
+      %>
+    </div>
+  </div>
+<%- end -%>

@@ -11,17 +11,17 @@
     </tfoot>
     <tbody>
       <tr>
-        <td><%= number_with_precision(@payslip.rate, precision: 2) %> (salary) * <%= @payslip.days_present %> (days present)</td>
+        <td><%= number_with_precision(@payslip.rate, precision: 2) %> (rate) * <%= @payslip.days_present %> (days present)</td>
         <td><%= number_with_precision(@payslip.total_income, precision: 2) %></td>
       </tr>
-      <%- if @payslip.salary_advances.present? -%>
+      <%- if @payslip.advances.present? -%>
         <tr>
           <td>
             Deductions:
             <ul class="list-group list-group-flush">
-              <%- each_advance_billing_item(@payslip.salary_advances) do |advance| -%>
+              <%- each_advance_billing_item(@payslip.advances) do |advance| -%>
                 <%- if !advance.is_a?(Array) -%>
-                  <%= render 'advance_billing_item', advance: advance %>
+                  <%= render 'shared/receipts/billing_item', advance: advance %>
                 <%- else -%>
                   <li class="list-group-item">
                     <div class="d-flex">
@@ -39,7 +39,7 @@
                     <%- unless print_preview? -%>
                       <ul id="rest" class="collapse list-group">
                         <%- advance.each do |other| -%>
-                          <%= render 'advance_billing_item', advance: other %>
+                          <%= render 'shared/receipts/billing_item', advance: other %>
                         <%- end -%>
                       </ul>
                     <%- end -%>
@@ -48,7 +48,7 @@
               <%- end -%>
             </ul>
           </td>
-          <td>-<%= number_with_precision(@payslip.salary_advances_total, precision: 2) %></td>
+          <td>-<%= number_with_precision(@payslip.advances.sum(:amount), precision: 2) %></td>
         </tr>
       <%- end -%>
     </tbody>
