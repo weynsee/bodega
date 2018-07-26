@@ -3,7 +3,7 @@
     <div class="tab-content">
       <div class="tab-pane active">
         <div class="d-flex justify-content-center">
-          <h4 class="mb-3"><%= format_date_range(@advance.date_range) %> <%= advance_name %> for <%= @advance.employee.try(:name) %></h4>
+          <h4 class="mb-3"><%= @advance.date_range %> <%= advance_name %> for <%= @advance.employee.try(:name) %></h4>
         </div>
         <%= render 'shared/receipts/top_row', model: @advance %>
         <div class="d-flex p-2">

@@ -26,4 +26,18 @@ class Employee < ApplicationRecord
   has_many :rice_allowance_payslips, dependent: :nullify
 
   has_many :overtime_payslips, dependent: :nullify
+
+  has_many :month_end_advances, dependent: :nullify do
+    def applies_for(period)
+      where(month_end_advances: { applies_on: period })
+    end
+  end
+  has_many :month_end_payslips, dependent: :nullify
+
+  has_many :year_end_advances, dependent: :nullify do
+    def applies_for(period)
+      where(year_end_advances: { applies_on: period })
+    end
+  end
+  has_many :year_end_payslips, dependent: :nullify
 end

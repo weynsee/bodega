@@ -5,7 +5,11 @@
   data: { preview: true }
 ) do |f| %>
   <%= f.number_field @payslip.attendance, data: { preview: true } %>
-  <%= render 'shared/payslips/applies_on_field', f: f %>
+  <%= render 'shared/applies_on_field',
+    f: f,
+    model: @payslip,
+    options: { data: { preview: true } }
+  %>
   <div class="d-flex">
     <div class="p-2">
       <%= f.button 'Preview', type: :button,

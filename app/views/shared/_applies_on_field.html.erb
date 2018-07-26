@@ -1,0 +1,11 @@
+<%- if model.half_monthly? -%>
+  <%= f.select :applies_on, half_month_options(model.date_range), {},
+    options %>
+<%- elsif model.weekly? -%>
+  <%= f.week_field :applies_on, { value: model.applies_on }.merge(options) %>
+<%- elsif model.monthly? -%>
+  <%= f.month_field :applies_on, { value: model.applies_on }.merge(options) %>
+<%- elsif model.yearly? -%>
+  <%= f.select :applies_on, (Time.zone.now.year - 3)..(Time.zone.now.year + 3), {},
+    options %>
+<%- end -%>

@@ -19,8 +19,8 @@ module FormHelper
       a, b = HalfMonthDateRange.format_date(iter.beginning_of_month),
         HalfMonthDateRange.format_date(iter.end_of_month)
       range_a, range_b = HalfMonthDateRange.new(a), HalfMonthDateRange.new(b)
-      options << [display_date_range(range_a), a]
-      options << [display_date_range(range_b), b]
+      options << [range_a.to_s, a]
+      options << [range_b.to_s, b]
       break if iter == last
       iter = iter.next_month
     end

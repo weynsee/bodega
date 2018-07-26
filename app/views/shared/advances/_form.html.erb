@@ -9,7 +9,11 @@
     <%- end -%>
   <% end %>
   <%= f.number_field :amount, rate_field_value(@advance.amount, disabled: @advance.included_in_payslip?) %>
-  <%= render 'shared/advances/applies_on_field', f: f %>
+  <%= render 'shared/applies_on_field',
+    f: f,
+    model: @advance,
+    options: { disabled: @advance.included_in_payslip? }
+  %>
   <%= f.text_area :description,
     help: 'Short description of the advance. Will be included in receipt.',
     disabled: @advance.included_in_payslip? %>

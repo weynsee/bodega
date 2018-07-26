@@ -1,6 +1,0 @@
-<%- if @advance.half_monthly? -%>
-  <%= f.select :applies_on, half_month_options(@advance.date_range), {},
-    disabled: @advance.included_in_payslip? %>
-<%- elsif @advance.weekly? -%>
-  <%= f.week_field :applies_on, value: @advance.applies_on, disabled: @advance.included_in_payslip? %>
-<%- end -%>

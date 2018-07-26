@@ -1,19 +1,13 @@
-class WeekDateRange
+class WeekDateRange < DateRange
   class << self
     def format_date(date)
-      "#{date.year}-W#{date.cweek.to_s.rjust(2, '0')}"
+      "#{date.year}-W#{rjust(date.cweek)}"
     end
   end
-
-  attr_reader :start, :end
 
   def initialize(token)
     @token = token
     parse token
-  end
-
-  def to_s
-    @token
   end
 
   def next

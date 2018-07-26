@@ -19,7 +19,7 @@
             <td><%= link_to payslip.employee.try(:name), edit_employee_path(id: payslip.employee_id) if payslip.employee_id %></td>
           <%- end -%>
           <td><%= payslip.salary_type.humanize %></td>
-          <td><%= display_date_range payslip.date_range %></td>
+          <td><%= payslip.date_range %></td>
           <td><%= number_to_currency payslip.total %></td>
           <td><%= l payslip.created_at, format: :short %></td>
           <td>

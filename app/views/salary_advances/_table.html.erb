@@ -24,7 +24,7 @@
           <td><%= advance.advance_type.humanize %></td>
           <td><%= advance.salary_type.humanize %></td>
           <td><%= number_to_currency advance.amount %></td>
-          <td><%= display_date_range advance.date_range %></td>
+          <td><%= advance.date_range %></td>
           <td><%= truncate advance.description %></td>
           <td>
             <%- if advance.included_in_payslip? -%>

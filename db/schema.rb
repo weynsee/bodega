@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_125616) do
+ActiveRecord::Schema.define(version: 2018_07_26_053221) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
@@ -23,6 +23,33 @@ ActiveRecord::Schema.define(version: 2018_07_25_125616) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_employees_on_name"
+  end
+
+  create_table "month_end_advances", force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "advance_type", default: 0, null: false
+    t.float "amount", null: false
+    t.string "applies_on", null: false
+    t.integer "month_end_payslip_id"
+    t.string "description"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id", "applies_on"], name: "index_month_end_advances_on_employee_id_and_applies_on"
+    t.index ["employee_id"], name: "index_month_end_advances_on_employee_id"
+    t.index ["month_end_payslip_id"], name: "index_month_end_advances_on_month_end_payslip_id"
+  end
+
+  create_table "month_end_payslips", force: :cascade do |t|
+    t.integer "employee_id"
+    t.string "applies_on", null: false
+    t.float "days_present", null: false
+    t.float "rate", null: false
+    t.float "total", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id", "applies_on"], name: "index_month_end_payslips_on_employee_id_and_applies_on", unique: true
+    t.index ["employee_id"], name: "index_month_end_payslips_on_employee_id"
   end
 
   create_table "overtime_payslips", force: :cascade do |t|
@@ -91,6 +118,33 @@ ActiveRecord::Schema.define(version: 2018_07_25_125616) do
     t.datetime "updated_at", null: false
     t.index ["employee_id", "applies_on"], name: "index_salary_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_salary_payslips_on_employee_id"
+  end
+
+  create_table "year_end_advances", force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "advance_type", default: 0, null: false
+    t.float "amount", null: false
+    t.string "applies_on", null: false
+    t.integer "year_end_payslip_id"
+    t.string "description"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id", "applies_on"], name: "index_year_end_advances_on_employee_id_and_applies_on"
+    t.index ["employee_id"], name: "index_year_end_advances_on_employee_id"
+    t.index ["year_end_payslip_id"], name: "index_year_end_advances_on_year_end_payslip_id"
+  end
+
+  create_table "year_end_payslips", force: :cascade do |t|
+    t.integer "employee_id"
+    t.string "applies_on", null: false
+    t.float "days_present", null: false
+    t.float "rate", null: false
+    t.float "total", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id", "applies_on"], name: "index_year_end_payslips_on_employee_id_and_applies_on", unique: true
+    t.index ["employee_id"], name: "index_year_end_payslips_on_employee_id"
   end
 
 end

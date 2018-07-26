@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-lg-12">
+    <%= render 'employees/nav_pills' %>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <div class="pb-2 mb-3 mb-2 mb-md-0 float-right">
+          <%= link_to 'Create new year end advance',
+            new_employee_year_end_advance_path(@employee), class: 'btn btn-primary' %>
+        </div>
+        <%= render 'shared/advances/table' %>
+      </div>
+    </div>
+  </div>
+</div>

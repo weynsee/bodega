@@ -31,6 +31,8 @@ module ActsAsPayslipController
     if @payslip.save
       path = public_send("employee_#{association}_path", @employee)
       redirect_to path, notice: payslip_created_message(@payslip)
+    else
+      render 'shared/payslips/update_form'
     end
   end
 

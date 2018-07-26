@@ -1,0 +1,10 @@
+<div class="d-flex p-2">
+  <div>
+    <span class="pr-2">Period:</span>
+    <span><%= @payslip.date_range %></span>
+  </div>
+  <div class="ml-auto">
+    <span class="pr-2">Rate:</span>
+    <span><%= number_to_currency @payslip.rate %></span>
+  </div>
+</div>

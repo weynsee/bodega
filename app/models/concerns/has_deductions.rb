@@ -1,6 +1,5 @@
 module HasDeductions
   extend ActiveSupport::Concern
-  include DateRangeHelper
 
   included do
     before_validation :compute
@@ -39,7 +38,7 @@ module HasDeductions
       advance.applies_on = date_range_class.format_date date_range.next
       advance.advance_type = :carry_over
       advance.amount = total.abs
-      advance.description = "Carry over from negative balance (payslip #{format_date_range(date_range)})"
+      advance.description = "Carry over from negative balance (payslip for #{date_range})"
       advance.save
       @carry_over = advance
     end

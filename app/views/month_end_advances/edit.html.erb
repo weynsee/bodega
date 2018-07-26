@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-12">
+    <%= render 'employees/nav_pills' if employee_context? %>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <h4 class="mb-3">
+          <%- if @advance.employee_id -%>
+            Edit month end advance for <%= @advance.employee.name %>
+          <%- else -%>
+            Edit month end advance
+          <%- end -%>
+        </h4>
+        <%= render 'shared/advances/form' %>
+      </div>
+    </div>
+  </div>
+</div>

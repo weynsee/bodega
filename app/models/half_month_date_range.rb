@@ -1,7 +1,7 @@
-class HalfMonthDateRange
+class HalfMonthDateRange < DateRange
   class << self
     def format_date(date)
-      prefix = "#{date.year}-#{date.month.to_s.rjust(2, '0')}:"
+      prefix = "#{date.year}-#{rjust(date.month)}:"
       prefix + (date.day <= 15 ? 'a' : 'b')
     end
   end
@@ -10,10 +10,6 @@ class HalfMonthDateRange
 
   def initialize(token)
     parse token
-  end
-
-  def to_s
-    @date.strftime('%b %Y')
   end
 
   def next

@@ -1,5 +1,0 @@
-<%- if @payslip.half_monthly? -%>
-  <%= f.select :applies_on, half_month_options(@payslip.date_range), {}, data: { preview: true } %>
-<%- elsif @payslip.weekly? -%>
-  <%= f.week_field :applies_on, value: @payslip.applies_on, data: { preview: true } %>
-<%- end -%>

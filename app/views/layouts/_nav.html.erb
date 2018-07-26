@@ -14,7 +14,7 @@
         <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
           <%- Deductions::TYPES.each do |advance| -%>
             <%= link_to advance.to_s.titleize,
-              public_send("#{advance}_path", @employee),
+              public_send("#{advance}_path"),
               class: 'dropdown-item'
             %>
           <%- end -%>
@@ -25,7 +25,7 @@
         <div class="dropdown-menu" aria-labelledby="deductions-dropdown">
           <%- Payslips::TYPES.each do |payslip| -%>
             <%= link_to payslip.to_s.titleize,
-              public_send("#{payslip}_path", @employee),
+              public_send("#{payslip}_path"),
               class: 'dropdown-item'
             %>
           <%- end -%>
