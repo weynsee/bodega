@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_26_053221) do
+ActiveRecord::Schema.define(version: 2018_07_27_100622) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
@@ -26,11 +29,11 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "month_end_advances", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.integer "advance_type", default: 0, null: false
     t.float "amount", null: false
     t.string "applies_on", null: false
-    t.integer "month_end_payslip_id"
+    t.bigint "month_end_payslip_id"
     t.string "description"
     t.string "notes"
     t.datetime "created_at", null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "month_end_payslips", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.string "applies_on", null: false
     t.float "days_present", null: false
     t.float "rate", null: false
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "overtime_payslips", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.string "applies_on", null: false
     t.float "hours", null: false
     t.float "rate", null: false
@@ -65,11 +68,11 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "rice_allowance_advances", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.integer "advance_type", default: 0, null: false
     t.float "amount", null: false
     t.string "applies_on", null: false
-    t.integer "rice_allowance_payslip_id"
+    t.bigint "rice_allowance_payslip_id"
     t.string "description"
     t.string "notes"
     t.datetime "created_at", null: false
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "rice_allowance_payslips", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.string "applies_on", null: false
     t.float "days_present", null: false
     t.float "rate", null: false
@@ -92,12 +95,12 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "salary_advances", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.integer "advance_type", default: 0, null: false
     t.integer "salary_type", null: false
     t.float "amount", null: false
     t.string "applies_on", null: false
-    t.integer "salary_payslip_id"
+    t.bigint "salary_payslip_id"
     t.string "description"
     t.string "notes"
     t.datetime "created_at", null: false
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "salary_payslips", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.string "applies_on", null: false
     t.float "days_present", null: false
     t.integer "salary_type", null: false
@@ -121,11 +124,11 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "year_end_advances", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.integer "advance_type", default: 0, null: false
     t.float "amount", null: false
     t.string "applies_on", null: false
-    t.integer "year_end_payslip_id"
+    t.bigint "year_end_payslip_id"
     t.string "description"
     t.string "notes"
     t.datetime "created_at", null: false
@@ -136,7 +139,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
   end
 
   create_table "year_end_payslips", force: :cascade do |t|
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.string "applies_on", null: false
     t.float "days_present", null: false
     t.float "rate", null: false
@@ -147,4 +150,17 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
     t.index ["employee_id"], name: "index_year_end_payslips_on_employee_id"
   end
 
+  add_foreign_key "month_end_advances", "employees"
+  add_foreign_key "month_end_advances", "month_end_payslips"
+  add_foreign_key "month_end_payslips", "employees"
+  add_foreign_key "overtime_payslips", "employees"
+  add_foreign_key "rice_allowance_advances", "employees"
+  add_foreign_key "rice_allowance_advances", "rice_allowance_payslips"
+  add_foreign_key "rice_allowance_payslips", "employees"
+  add_foreign_key "salary_advances", "employees"
+  add_foreign_key "salary_advances", "salary_payslips"
+  add_foreign_key "salary_payslips", "employees"
+  add_foreign_key "year_end_advances", "employees"
+  add_foreign_key "year_end_advances", "year_end_payslips"
+  add_foreign_key "year_end_payslips", "employees"
 end
