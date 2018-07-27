@@ -36,7 +36,7 @@ module ActsAsAdvanceController
       path = public_send("employee_#{association}_path", @employee)
       redirect_to path, notice: 'Record saved successfully!'
     else
-      render 'shared/advances/update_form'
+      render partial: 'shared/advances/update_form'
     end
   end
 
@@ -52,7 +52,7 @@ module ActsAsAdvanceController
       path = public_send("nesting_aware_#{association}_path")
       redirect_to path, notice: 'Record saved successfully!'
     else
-      render 'shared/advances/update_form'
+      render partial: 'shared/advances/update_form'
     end
 
   end

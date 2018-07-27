@@ -9,7 +9,7 @@ class Employee < ApplicationRecord
   validates :year_end_rate, numericality: { greater_than: 0 }
   validates :rate_type, inclusion: { in: rate_types.keys, message: :invalid }
 
-  scope :search, ->(name) { where('name LIKE ?', name) }
+  scope :search, ->(name) { where("name LIKE ?", "%#{name}%") }
 
   has_many :salary_advances, dependent: :nullify do
     def applies_for(type, period)

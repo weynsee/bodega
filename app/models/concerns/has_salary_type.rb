@@ -10,6 +10,6 @@ module HasSalaryType
   private
 
   def set_salary_type
-    self.salary_type = employee.rate_type if self.salary_type.blank? && self.employee_id
+    self.salary_type = employee.rate_type if self.employee_id
   end
 end
