@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_053221) do
     t.integer "employee_id"
     t.string "applies_on", null: false
     t.float "days_present", null: false
-    t.integer "salary_type", default: 0, null: false
+    t.integer "salary_type", null: false
     t.float "rate", null: false
     t.float "total", null: false
     t.datetime "created_at", null: false

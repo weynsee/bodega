@@ -12,7 +12,7 @@ class MonthEndAdvance < ApplicationRecord
 
   alias_attribute :payslip, :month_end_payslip
 
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   def monthly?
     true

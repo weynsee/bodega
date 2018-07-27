@@ -35,6 +35,6 @@ module HasAppliesOn
   end
 
   def set_default_applies_on
-    self.applies_on = date_range_class.format_date(Date.today)
+    self.applies_on = date_range_class.format_date(Date.today) if self.applies_on.blank?
   end
 end

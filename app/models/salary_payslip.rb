@@ -13,8 +13,8 @@ class SalaryPayslip < ApplicationRecord
   belongs_to :employee, optional: true
   has_many :salary_advances, dependent: :nullify
 
-  after_initialize :set_salary_type
-  after_initialize :set_default_applies_on
+  after_initialize :set_salary_type, if: :new_record?
+  after_initialize :set_default_applies_on, if: :new_record?
 
   alias_attribute :advances, :salary_advances
 

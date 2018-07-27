@@ -12,7 +12,7 @@ class RiceAllowancePayslip < ApplicationRecord
   belongs_to :employee, optional: true
   has_many :rice_allowance_advances, dependent: :nullify
 
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   alias_attribute :advances, :rice_allowance_advances
 

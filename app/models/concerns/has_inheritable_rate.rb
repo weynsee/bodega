@@ -4,7 +4,7 @@ module HasInheritableRate
   included do
     validates :rate, numericality: { greater_than: 0 }
 
-    after_initialize :inherit_rate
+    after_initialize :inherit_rate, if: :new_record?
   end
 
   private

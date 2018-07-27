@@ -12,7 +12,7 @@ class YearEndAdvance < ApplicationRecord
 
   alias_attribute :payslip, :year_end_payslip
 
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   def yearly?
     true

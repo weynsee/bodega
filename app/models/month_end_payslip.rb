@@ -12,7 +12,7 @@ class MonthEndPayslip < ApplicationRecord
   belongs_to :employee, optional: true
   has_many :month_end_advances, dependent: :nullify
 
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   alias_attribute :advances, :month_end_advances
 

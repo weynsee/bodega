@@ -9,7 +9,7 @@ class OvertimePayslip < ApplicationRecord
   belongs_to :employee, optional: true
 
   before_validation :compute
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   def total_income
     rate * hours

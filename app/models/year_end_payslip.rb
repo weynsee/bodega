@@ -12,7 +12,7 @@ class YearEndPayslip < ApplicationRecord
   belongs_to :employee, optional: true
   has_many :year_end_advances, dependent: :nullify
 
-  after_initialize :set_default_applies_on
+  after_initialize :set_default_applies_on, if: :new_record?
 
   alias_attribute :advances, :year_end_advances
 

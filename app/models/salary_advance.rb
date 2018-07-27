@@ -13,6 +13,6 @@ class SalaryAdvance < ApplicationRecord
 
   alias_attribute :payslip, :salary_payslip
 
-  after_initialize :set_salary_type
-  after_initialize :set_default_applies_on
+  after_initialize :set_salary_type, if: :new_record?
+  after_initialize :set_default_applies_on, if: :new_record?
 end
