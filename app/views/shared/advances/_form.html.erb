@@ -5,14 +5,19 @@
 ) do |f| %>
   <%= f.form_group :advance_type do %>
     <%- advance_types.each do |type, _| -%>
-      <%= f.radio_button :advance_type, type, inline: true, disabled: @advance.included_in_payslip? %>
+      <%= f.radio_button :advance_type, type, inline: true,
+        required: !@advance.included_in_payslip?, disabled: @advance.included_in_payslip? %>
     <%- end -%>
   <% end %>
-  <%= f.number_field :amount, rate_field_value(@advance.amount, disabled: @advance.included_in_payslip?) %>
+  <%= f.number_field :amount, rate_field_value(
+    @advance.amount,
+    required: !@advance.included_in_payslip?,
+    disabled: @advance.included_in_payslip?
+  ) %>
   <%= render 'shared/applies_on_field',
     f: f,
     model: @advance,
-    options: { disabled: @advance.included_in_payslip? }
+    options: { disabled: @advance.included_in_payslip?, required: !@advance.included_in_payslip? }
   %>
   <%= f.text_area :description,
     help: 'Short description of the advance. Will be included in receipt.',

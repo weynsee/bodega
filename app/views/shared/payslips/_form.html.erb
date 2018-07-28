@@ -4,11 +4,11 @@
   id: 'payslip-form',
   data: { preview: true }
 ) do |f| %>
-  <%= f.number_field @payslip.attendance, data: { preview: true } %>
+  <%= f.number_field @payslip.attendance, required: true, data: { preview: true } %>
   <%= render 'shared/applies_on_field',
     f: f,
     model: @payslip,
-    options: { data: { preview: true } }
+    options: { data: { preview: true }, required: true }
   %>
   <div class="d-flex">
     <div class="p-2">
