@@ -28,8 +28,18 @@
               <td><%= employee.rate_type.humanize %></td>
               <td><%= number_to_currency employee.rice_allowance_rate %></td>
               <td><%= number_to_currency employee.overtime_rate %></td>
-              <td><%= number_to_currency employee.month_end_rate %></td>
-              <td><%= number_to_currency employee.year_end_rate %></td>
+              <td>
+                <%= employee.has_month_end? ?
+                  number_to_currency(employee.month_end_rate) :
+                  'N/A'
+                %>
+              </td>
+              <td>
+                <%= employee.has_year_end? ?
+                  number_to_currency(employee.year_end_rate) :
+                  'N/A'
+                %>
+              </td>
               <td>
                 <div class="btn-group btn-group-sm" role="group">
                   <%= link_to 'Edit', edit_employee_path(employee),

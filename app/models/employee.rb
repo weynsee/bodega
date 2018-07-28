@@ -6,8 +6,8 @@ class Employee < ApplicationRecord
   validates :rate, numericality: { greater_than: 0 }
   validates :overtime_rate, numericality: { greater_than: 0 }
   validates :rice_allowance_rate, numericality: { greater_than: 0 }
-  validates :month_end_rate, numericality: { greater_than: 0 }
-  validates :year_end_rate, numericality: { greater_than: 0 }
+  validates :month_end_rate, numericality: { allow_nil: true }
+  validates :year_end_rate, numericality: { allow_nil: true }
   validates :rate_type, inclusion: { in: rate_types.keys, message: :invalid }
 
   scope :search, ->(name) { where("name ILIKE ?", "%#{name}%") }
@@ -41,4 +41,17 @@ class Employee < ApplicationRecord
     end
   end
   has_many :year_end_payslips, dependent: :nullify
+
+  def has_month_end?
+    month_end_rate.present? && !month_end_rate.zero?
+  end
+
+  def has_year_end?
+    year_end_rate.present? && !year_end_rate.zero?
+  end
+
+  def disallowed?(type)
+    type = type.to_s.gsub(/_(payslips|advances)$/, '')
+    !public_send("has_#{type}?") if respond_to?("has_#{type}?")
+  end
 end

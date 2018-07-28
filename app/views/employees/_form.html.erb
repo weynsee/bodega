@@ -24,14 +24,16 @@
     rate_field_value(
       @employee.month_end_rate,
       help: 'Must be monthly rate',
-      required: true
+      required: false,
+      min: 0
     )
   %>
   <%= f.number_field :year_end_rate,
     rate_field_value(
       @employee.year_end_rate,
       help: 'Must be annual rate',
-      required: true
+      required: false,
+      min: 0
     )
   %>
   <%= f.form_group :status do %>
