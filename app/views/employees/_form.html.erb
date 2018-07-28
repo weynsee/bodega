@@ -34,5 +34,10 @@
       required: true
     )
   %>
+  <%= f.form_group :status do %>
+    <%- Employee.statuses.each do |status, _| -%>
+      <%= f.radio_button :status, status, inline: true, required: true %>
+    <%- end -%>
+  <% end %>
   <%= render 'form_buttons', { f: f } %>
 <% end %>

@@ -1,5 +1,6 @@
 class Employee < ApplicationRecord
   enum rate_type: SalaryTypes.keys
+  enum status: %i(active inactive)
 
   validates :name, presence: true
   validates :rate, numericality: { greater_than: 0 }

@@ -8,7 +8,7 @@
     </div>
     <div>
       <table class="table table-hover">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Rate</th>
@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <% @employees.each do |employee| %>
-            <tr>
+            <tr class="<%= 'table-warning' if employee.inactive? %>">
               <th scope="row"><%= employee.name %></th>
               <td><%= number_to_currency employee.rate %></td>
               <td><%= employee.rate_type.humanize %></td>

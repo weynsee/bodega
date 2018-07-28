@@ -44,7 +44,8 @@ class EmployeesController < ApplicationController
       :overtime_rate,
       :rice_allowance_rate,
       :month_end_rate,
-      :year_end_rate
+      :year_end_rate,
+      :status
     )
   end
 end
