@@ -1,0 +1,9 @@
+<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= label %></button>
+<div class="dropdown-menu">
+  <%- Deductions::TYPES.each do |advance| -%>
+    <%= link_to advance.to_s.titleize,
+      public_send("new_employee_#{advance.to_s.singularize}_path", employee),
+      class: 'dropdown-item'
+    %>
+  <%- end -%>
+</div>

@@ -4,26 +4,12 @@
   </div>
   <%- unless @employee.new_record? -%>
     <div class="p-2">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create advance</button>
-      <div class="dropdown-menu">
-        <%- Deductions::TYPES.each do |advance| -%>
-          <%= link_to advance.to_s.titleize,
-            public_send("new_employee_#{advance.to_s.singularize}_path", @employee),
-            class: 'dropdown-item'
-          %>
-        <%- end -%>
-      </div>
+      <%= render 'create_advance_dropdown',
+        label: '&plus; Advance'.html_safe, employee: @employee %>
     </div>
     <div class="p-2">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create payslip</button>
-      <div class="dropdown-menu">
-        <%- Payslips::TYPES.each do |payslip| -%>
-          <%= link_to payslip.to_s.titleize,
-            public_send("new_employee_#{payslip.to_s.singularize}_path", @employee),
-            class: 'dropdown-item'
-          %>
-        <%- end -%>
-      </div>
+      <%= render 'create_payslip_dropdown',
+        label: '&plus; Payslip'.html_safe, employee: @employee %>
     </div>
     <div class="ml-auto p-2">
       <%= link_to 'Delete', employee_path(@employee),

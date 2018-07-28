@@ -1,0 +1,9 @@
+<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= label %></button>
+<div class="dropdown-menu">
+  <%- Payslips::TYPES.each do |payslip| -%>
+    <%= link_to payslip.to_s.titleize,
+      public_send("new_employee_#{payslip.to_s.singularize}_path", employee),
+      class: 'dropdown-item'
+    %>
+  <%- end -%>
+</div>
