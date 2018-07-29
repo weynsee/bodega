@@ -5,6 +5,11 @@
   data: { preview: true }
 ) do |f| %>
   <%= f.number_field @payslip.attendance, required: true, data: { preview: true } %>
+  <%= render 'shared/issue_date_field',
+    f: f,
+    model: @payslip,
+    options: { data: { preview: true }, required: true }
+  %>
   <%= render 'shared/applies_on_field',
     f: f,
     model: @payslip,

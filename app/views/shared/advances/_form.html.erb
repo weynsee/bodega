@@ -14,6 +14,11 @@
     required: !@advance.included_in_payslip?,
     disabled: @advance.included_in_payslip?
   ) %>
+  <%= render 'shared/issue_date_field',
+    f: f,
+    model: @advance,
+    options: { disabled: @advance.included_in_payslip?, required: !@advance.included_in_payslip? }
+  %>
   <%= render 'shared/applies_on_field',
     f: f,
     model: @advance,

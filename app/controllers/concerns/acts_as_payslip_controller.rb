@@ -118,7 +118,7 @@ module ActsAsPayslipController
   end
 
   def available_params
-    %i(days_present applies_on)
+    %i(days_present applies_on issue_date)
   end
 
   def preview_mode?

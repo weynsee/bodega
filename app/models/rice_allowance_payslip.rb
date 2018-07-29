@@ -2,6 +2,7 @@ class RiceAllowancePayslip < ApplicationRecord
   include HasInheritableRate
   include HasAppliesOn
   include HasDeductions
+  include HasIssueDate
 
   validates :days_present, numericality: {
     greater_than_or_equal_to: 0, less_than: 7

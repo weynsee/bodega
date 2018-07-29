@@ -7,7 +7,7 @@
         <%- end -%>
         <th scope="col">Period</th>
         <th scope="col">Total</th>
-        <th scope="col">Generated On</th>
+        <th scope="col">Issue Date</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -19,7 +19,7 @@
           <%- end -%>
           <td><%= payslip.date_range %></td>
           <td><%= number_to_currency payslip.total %></td>
-          <td><%= l payslip.created_at, format: :short %></td>
+          <td><%= l payslip.issue_date, format: :short %></td>
           <td>
             <div class="btn-group btn-group-sm" role="group">
               <%= link_to 'View', payslip_path(payslip),

@@ -11,7 +11,7 @@
         <th scope="col">Period</th>
         <th scope="col">Description</th>
         <th scope="col">In Payslip?</th>
-        <th scope="col">Created On</th>
+        <th scope="col">Issue Date</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -33,7 +33,7 @@
               No
             <%- end -%>
           </td>
-          <td><%= l advance.created_at, format: :short %></td>
+          <td><%= l advance.issue_date, format: :short %></td>
           <td>
             <div class="btn-group btn-group-sm" role="group">
               <%= link_to 'Edit', nesting_aware_edit_salary_advance_path(advance),

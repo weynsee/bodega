@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_28_231627) do
+ActiveRecord::Schema.define(version: 2018_07_29_102700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_month_end_advances_on_employee_id_and_applies_on"
     t.index ["employee_id"], name: "index_month_end_advances_on_employee_id"
     t.index ["month_end_payslip_id"], name: "index_month_end_advances_on_month_end_payslip_id"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.float "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_month_end_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_month_end_payslips_on_employee_id"
   end
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.float "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_overtime_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_overtime_payslips_on_employee_id"
   end
@@ -78,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_rice_allowance_advances_on_employee_id_and_applies_on"
     t.index ["employee_id"], name: "index_rice_allowance_advances_on_employee_id"
     t.index ["rice_allowance_payslip_id"], name: "index_rice_allowance_advances_on_rice_allowance_payslip_id"
@@ -91,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.float "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_rice_allowance_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_rice_allowance_payslips_on_employee_id"
   end
@@ -106,6 +111,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "salary_type", "applies_on"], name: "index_salary_advances_on_employee_id_and_salary_type_and_date"
     t.index ["employee_id"], name: "index_salary_advances_on_employee_id"
     t.index ["salary_payslip_id"], name: "index_salary_advances_on_salary_payslip_id"
@@ -120,6 +126,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.float "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_salary_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_salary_payslips_on_employee_id"
   end
@@ -134,6 +141,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_year_end_advances_on_employee_id_and_applies_on"
     t.index ["employee_id"], name: "index_year_end_advances_on_employee_id"
     t.index ["year_end_payslip_id"], name: "index_year_end_advances_on_year_end_payslip_id"
@@ -147,6 +155,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_231627) do
     t.float "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "issue_date", null: false
     t.index ["employee_id", "applies_on"], name: "index_year_end_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_year_end_payslips_on_employee_id"
   end

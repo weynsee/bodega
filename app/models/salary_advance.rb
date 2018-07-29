@@ -2,6 +2,7 @@ class SalaryAdvance < ApplicationRecord
   include HasAppliesOn
   include HasSalaryType
   include HasPayslip
+  include HasIssueDate
 
   enum advance_type: %i(regular carry_over utilities)
 

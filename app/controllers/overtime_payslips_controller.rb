@@ -4,6 +4,6 @@ class OvertimePayslipsController < ApplicationController
   private
 
   def available_params
-    %i(hours applies_on)
+    %i(hours applies_on issue_date)
   end
 end

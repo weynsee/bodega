@@ -1,6 +1,7 @@
 class OvertimePayslip < ApplicationRecord
   include HasInheritableRate
   include HasAppliesOn
+  include HasIssueDate
 
   validates :hours, numericality: { greater_than_or_equal_to: 0 }
   validates :total, numericality: true

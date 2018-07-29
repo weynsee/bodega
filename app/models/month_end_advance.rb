@@ -1,6 +1,7 @@
 class MonthEndAdvance < ApplicationRecord
   include HasAppliesOn
   include HasPayslip
+  include HasIssueDate
 
   enum advance_type: %i(regular carry_over)
 

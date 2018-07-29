@@ -129,7 +129,8 @@ module ActsAsAdvanceController
       :amount,
       :applies_on,
       :description,
-      :notes
+      :notes,
+      :issue_date
     )
   end
 end
