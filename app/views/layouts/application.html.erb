@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= 'print' if print_preview? %>">
     <%= render 'layouts/nav' unless print_preview? %>
     <main role="main" class="container">
       <%= render 'layouts/messages' unless print_preview? %>

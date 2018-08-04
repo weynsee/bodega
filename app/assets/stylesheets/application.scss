@@ -3,7 +3,7 @@
 @import "bootstrap";
 @import "flatly/bootswatch";
 
-body {
+body:not(.print) {
   padding-top: 5rem;
 }
 
