@@ -67,8 +67,8 @@ module ActsAsPayslipController
     end
   end
 
-  def preview_path
-    public_send("nesting_aware_#{singular}_path", @payslip, printer: true)
+  def preview_path(payslip = @payslip)
+    public_send("nesting_aware_#{singular}_path", payslip, printer: true)
   end
 
   def payslip_form_path
