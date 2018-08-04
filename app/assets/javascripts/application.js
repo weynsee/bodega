@@ -32,7 +32,7 @@ $(document).on('click', 'button[data-preview]', function(e) {
   Turbolinks.visit(button.data('preview') + '?' + form.find('[data-preview]').serialize());
 });
 
-$(document).on('input', 'form[data-preview] [data-preview]', function() {
+$(document).on('input', 'form[data-preview] [data-preview=true]', function() {
   var form = $(this).parents('form');
   form.find('input[type=submit]').prop('disabled', true);
 });
