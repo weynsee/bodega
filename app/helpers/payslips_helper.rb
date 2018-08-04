@@ -4,7 +4,7 @@ module PayslipsHelper
     <<-ITEM
     #{advance.advance_type.humanize} salary advance
     on
-    #{advance.created_at.strftime('%m/%d')}
+    #{advance.issue_date.strftime('%m/%d')}
     #{description}
     ITEM
   end
