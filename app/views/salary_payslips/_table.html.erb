@@ -7,6 +7,7 @@
         <%- end -%>
         <th scope="col">Salary Type</th>
         <th scope="col">Period</th>
+        <th scope="col">Attendance</th>
         <th scope="col">Total</th>
         <th scope="col">Issue Date</th>
         <th scope="col">Actions</th>
@@ -20,6 +21,7 @@
           <%- end -%>
           <td><%= payslip.salary_type.humanize %></td>
           <td><%= payslip.date_range %></td>
+          <td><%= format_attendance(payslip) %></td>
           <td><%= number_to_currency payslip.total %></td>
           <td><%= l payslip.issue_date, format: :short %></td>
           <td>

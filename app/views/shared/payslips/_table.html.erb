@@ -6,6 +6,7 @@
           <th scope="col">Employee</th>
         <%- end -%>
         <th scope="col">Period</th>
+        <th scope="col">Attendance</th>
         <th scope="col">Total</th>
         <th scope="col">Issue Date</th>
         <th scope="col">Actions</th>
@@ -18,6 +19,7 @@
             <td><%= link_to payslip.employee.try(:name), edit_employee_path(id: payslip.employee_id) if payslip.employee_id %></td>
           <%- end -%>
           <td><%= payslip.date_range %></td>
+          <td><%= format_attendance(payslip) %></td>
           <td><%= number_to_currency payslip.total %></td>
           <td><%= l payslip.issue_date, format: :short %></td>
           <td>

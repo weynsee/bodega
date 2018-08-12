@@ -20,4 +20,8 @@ module PayslipsHelper
     end
     yield rest if rest.present?
   end
+
+  def format_attendance(payslip)
+    "#{number_with_precision(payslip.send(payslip.attendance), precision: 2)} #{payslip.attendance.to_s.humanize(capitalize: false)}"
+  end
 end

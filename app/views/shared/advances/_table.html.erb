@@ -8,6 +8,7 @@
         <th scope="col">Type</th>
         <th scope="col">Amount</th>
         <th scope="col">Period</th>
+        <th scope="col">Attendance</th>
         <th scope="col">Description</th>
         <th scope="col">In Payslip?</th>
         <th scope="col">Issue Date</th>
@@ -23,6 +24,7 @@
           <td><%= advance.advance_type.humanize %></td>
           <td><%= number_to_currency advance.amount %></td>
           <td><%= advance.date_range %></td>
+          <td><%= advance.attendance %></td>
           <td><%= truncate advance.description %></td>
           <td>
             <%- if advance.included_in_payslip? -%>
