@@ -6,7 +6,7 @@
           <h4 class="mb-3"><%= advance_name.titleize %> (<%= @advance.date_range %>)</h4>
         </div>
         <%= render 'shared/receipts/top_row', model: @advance %>
-        <div class="d-flex p-2">
+        <div class="d-flex pl-2 pr-2 mt-4 mb-4">
           <div>
             <span class="pr-2">Advance Type:</span>
             <span><%= @advance.advance_type.humanize %></span>
