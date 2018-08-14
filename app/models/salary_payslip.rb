@@ -26,4 +26,16 @@ class SalaryPayslip < ApplicationRecord
   def attendance
     :days_present
   end
+
+  def total_deductions
+    total = applicable_advances.sum(:amount)
+    total += 100 if half_monthly?
+    total
+  end
+
+  def total_deducted_amount
+    total = advances.sum(:amount)
+    total += 100 if half_monthly?
+    total
+  end
 end

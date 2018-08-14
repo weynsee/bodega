@@ -8,7 +8,7 @@
             <h4 class="mb-3">
               Generate salary payslip for <%= @employee.name %>
             </h4>
-            <%= render 'shared/payslips/details' %>
+            <%= render 'payslip_details' %>
           </div>
           <%= render 'shared/payslips/summary',
             rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)"

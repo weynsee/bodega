@@ -1,0 +1,64 @@
+<div class="row pt-3">
+  <table class="table table-bordered mr-3 ml-3">
+    <tr>
+      <th colspan="2">Breakdown</th>
+    </tr>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td><%= number_to_currency @payslip.total %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td><%= rate_computation %></td>
+        <td><%= number_with_precision(@payslip.total_income, precision: 2) %></td>
+      </tr>
+      <%- if @payslip.total_deducted_amount > 0 -%>
+        <tr>
+          <td>
+            Deductions:
+            <ul class="list-group list-group-flush">
+              <%- if @payslip.half_monthly? -%>
+                <li class="list-group-item">
+                  <div class="d-flex">
+                    <div>Cash bond</div>
+                    <div class="ml-auto"><%= number_with_precision(100, precision: 2) %></div>
+                  </div>
+                </li>
+              <%- end -%>
+              <%- each_advance_billing_item(@payslip.advances) do |advance| -%>
+                <%- if !advance.is_a?(Array) -%>
+                  <%= render 'shared/receipts/billing_item', advance: advance %>
+                <%- else -%>
+                  <li class="list-group-item">
+                    <div class="d-flex">
+                      <div>
+                        <%= link_to_unless print_preview?,
+                          pluralize(advance.size, 'other advance'),
+                          '#',
+                          data: { toggle: 'collapse', target: '#rest' }
+                        %>
+                      </div>
+                      <div class="ml-auto">
+                        <%= number_with_precision(advance.sum(&:amount), precision: 2) %>
+                      </div>
+                    </div>
+                    <%- unless print_preview? -%>
+                      <ul id="rest" class="collapse list-group">
+                        <%- advance.each do |other| -%>
+                          <%= render 'shared/receipts/billing_item', advance: other %>
+                        <%- end -%>
+                      </ul>
+                    <%- end -%>
+                  </li>
+                <%- end -%>
+              <%- end -%>
+            </ul>
+          </td>
+          <td>-<%= number_with_precision(@payslip.total_deducted_amount, precision: 2) %></td>
+        </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,35 @@
+<table class="table table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Issue Date</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="table-success">
+      <td colspan="3"></td>
+      <td><%= number_to_currency @payslip.total_deductions %></td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <%- @payslip.applicable_advances.each do |advance| -%>
+      <tr>
+        <td><%= advance.advance_type.humanize %></td>
+        <td><%= truncate advance.description %></td>
+        <td><%= link_to l(advance.issue_date, format: :short),
+          edit_advance_path(advance) %></td>
+        <td><%= number_to_currency advance.amount %></td>
+      </tr>
+    <%- end -%>
+    <%- if @payslip.half_monthly? -%>
+      <tr>
+        <td>Cash bond</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td><%= number_to_currency 100 %></td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>

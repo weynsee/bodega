@@ -7,7 +7,7 @@
           <h4 class="mb-3"><strong>Salary Payslip (<%= @payslip.date_range %>)</strong></h4>
         </div>
         <%= render 'payslip_header' %>
-        <%= render 'shared/receipts/breakdown',
+        <%= render 'receipt_breakdown',
           rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)" %>
         <%= render 'shared/receipts/footer' %>
       </div>

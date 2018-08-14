@@ -14,6 +14,10 @@ module HasDeductions
     applicable_advances.sum(:amount)
   end
 
+  def total_deducted_amount
+    advances.sum(:amount)
+  end
+
   def total_income
     rate * days_present
   end
