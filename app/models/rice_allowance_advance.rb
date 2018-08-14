@@ -1,5 +1,5 @@
 class RiceAllowanceAdvance < ApplicationRecord
-  include HasAppliesOn
+  include HasAdvanceAppliesOn
   include HasPayslip
   include HasIssueDate
 

@@ -1,5 +1,5 @@
 class SalaryAdvance < ApplicationRecord
-  include HasAppliesOn
+  include HasAdvanceAppliesOn
   include HasSalaryType
   include HasPayslip
   include HasIssueDate

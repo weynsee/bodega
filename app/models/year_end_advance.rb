@@ -1,5 +1,5 @@
 class YearEndAdvance < ApplicationRecord
-  include HasAppliesOn
+  include HasAdvanceAppliesOn
   include HasPayslip
   include HasIssueDate
 
