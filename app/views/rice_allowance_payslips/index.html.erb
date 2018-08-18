@@ -1,8 +1,14 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
       <h2>Rice allowance payslips</h2>
     </div>
+    <%= render 'shared/payslips/search_form',
+      url: nesting_aware_rice_allowance_payslips_path,
+      type: :weekly %>
     <%= render 'shared/payslips/table' %>
+    <nav aria-label="Payslips list navigation">
+      <%= pagy_nav_bootstrap(@pagy).html_safe %>
+    </nav>
   </div>
 </div>

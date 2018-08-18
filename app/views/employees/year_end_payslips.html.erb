@@ -3,11 +3,22 @@
     <%= render 'employees/nav_pills' %>
     <div class="tab-content">
       <div class="tab-pane active">
-        <div class="pb-2 mb-3 mb-2 mb-md-0 float-right">
-          <%= link_to 'Create new year end payslip',
-            new_employee_year_end_payslip_path(@employee), class: 'btn btn-dark' %>
-        </div>
+        <%= render 'shared/payslips/search_form',
+          url: nesting_aware_year_end_payslips_path,
+          type: :yearly %>
         <%= render 'shared/payslips/table' %>
+        <div class="row">
+          <div class="col-auto mr-auto">
+            <nav aria-label="Payslips list navigation">
+              <%= pagy_nav_bootstrap(@pagy).html_safe %>
+            </nav>
+          </div>
+          <div class="col-auto">
+            <%= link_to 'Create new year end payslip',
+              new_employee_year_end_payslip_path(@employee),
+              class: 'btn btn-secondary' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

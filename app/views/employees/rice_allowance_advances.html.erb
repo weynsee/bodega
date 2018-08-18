@@ -3,11 +3,21 @@
     <%= render 'employees/nav_pills' %>
     <div class="tab-content">
       <div class="tab-pane active">
-        <div class="pb-2 mb-3 mb-2 mb-md-0 float-right">
-          <%= link_to 'Create new rice allowance advance',
-            new_employee_rice_allowance_advance_path(@employee), class: 'btn btn-dark' %>
-        </div>
+        <%= render 'shared/advances/search_form',
+          url: nesting_aware_rice_allowance_advances_path,
+          type: :weekly %>
         <%= render 'shared/advances/table' %>
+        <div class="row">
+          <div class="col-auto mr-auto">
+            <nav aria-label="Advances list navigation">
+              <%= pagy_nav_bootstrap(@pagy).html_safe %>
+            </nav>
+          </div>
+          <div class="col-auto">
+            <%= link_to 'Create new rice allowance advance',
+              new_employee_rice_allowance_advance_path(@employee), class: 'btn btn-secondary' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

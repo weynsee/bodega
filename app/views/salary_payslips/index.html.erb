@@ -3,6 +3,13 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
       <h2>Salary payslips</h2>
     </div>
+    <%= render 'shared/payslips/search_form',
+      url: nesting_aware_salary_payslips_path,
+      selected: params[:range],
+      type: %i(weekly half_monthly) %>
     <%= render 'table' %>
+    <nav aria-label="Payslips list navigation">
+      <%= pagy_nav_bootstrap(@pagy).html_safe %>
+    </nav>
   </div>
 </div>

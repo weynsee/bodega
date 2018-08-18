@@ -3,6 +3,12 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
       <h2>Year end payslips</h2>
     </div>
+    <%= render 'shared/payslips/search_form',
+      url: nesting_aware_year_end_payslips_path,
+      type: :yearly %>
     <%= render 'shared/payslips/table' %>
+    <nav aria-label="Payslips list navigation">
+      <%= pagy_nav_bootstrap(@pagy).html_safe %>
+    </nav>
   </div>
 </div>

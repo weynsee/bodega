@@ -26,4 +26,8 @@ module FormHelper
     end
     options
   end
+
+  def rate_types_for_select
+    Employee.rate_types.map { |rate_type, _| [rate_type.humanize, rate_type]}
+  end
 end

@@ -20,6 +20,11 @@ module ActsAsPayslipController
   def index
     scope = employee_context? ? employee_payslips : model.all
     scope = scope.order(created_at: :desc)
+    search_params = params.permit!.to_h
+    search_params = search_params.slice(
+      :issue_date, :applies_on
+    ).symbolize_keys
+    scope = scope.search(search_params)
     @pagy, @payslips = pagy(scope, page: params[:page], items: 25)
 
     render "employees/#{association}" if employee_context?

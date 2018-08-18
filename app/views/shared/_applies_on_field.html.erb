@@ -1,11 +1,15 @@
+<%
+  select_options = {}
+  select_options = local_assigns[:select_options] if local_assigns.has_key? :select_options
+%>
 <%- if model.half_monthly? -%>
-  <%= f.select :applies_on, half_month_options(model.date_range), {},
+  <%= f.select :applies_on, half_month_options(model.date_range), select_options,
     options %>
 <%- elsif model.weekly? -%>
   <%= f.week_field :applies_on, { value: model.applies_on }.merge(options) %>
 <%- elsif model.monthly? -%>
   <%= f.month_field :applies_on, { value: model.applies_on }.merge(options) %>
 <%- elsif model.yearly? -%>
-  <%= f.select :applies_on, (Time.zone.now.year - 3)..(Time.zone.now.year + 3), {},
+  <%= f.select :applies_on, (Time.zone.now.year - 3)..(Time.zone.now.year + 3), select_options,
     options %>
 <%- end -%>

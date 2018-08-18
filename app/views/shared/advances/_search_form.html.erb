@@ -1,0 +1,38 @@
+<% selected = local_assigns[:selected] || (type if Array(type).size == 1) %>
+<div class="mb-2">
+  <%= bootstrap_form_with(
+    data: { turbolinks: true },
+    url: url,
+    method: :get,
+    local: true,
+    layout: :inline
+  ) do |f| %>
+    <%- if Array(type).size > 1 -%>
+      <div class="input-group mr-2">
+        <%= f.select :range,
+          rate_types_for_select,
+          { selected: selected, include_blank: true },
+          data: { toggler: true }
+        %>
+      </div>
+    <%- end -%>
+    <%- Array(type).each do |type| -%>
+      <div data-collapse="<%= type %>" class="input-group mr-2 <%= 'collapse' if type.to_s != selected.to_s %>">
+        <%= render 'shared/applies_on_field',
+          model: AppliesOn.new(type, params[:applies_on], params[:range]),
+          f: f, options: {},
+          select_options: { selected: params[:applies_on], include_blank: true }
+        %>
+      </div>
+    <%- end -%>
+    <div class="input-group mr-2">
+      <%= f.date_field :issue_date, value: params[:issue_date] %>
+    </div>
+    <div class="input-group mr-2">
+      <%= f.check_box :included_in_payslip, checked: params[:included_in_payslip] == '1' %>
+    </div>
+    <div>
+      <%= f.submit 'Search', class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</div>

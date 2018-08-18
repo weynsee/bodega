@@ -1,4 +1,5 @@
 class MonthEndPayslip < ApplicationRecord
+  include HasSearchQuery
   include HasInheritableRate
   include HasAppliesOn
   include HasDeductions

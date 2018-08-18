@@ -1,4 +1,5 @@
 class MonthEndAdvance < ApplicationRecord
+  include HasSearchQuery
   include HasAdvanceAppliesOn
   include HasPayslip
   include HasIssueDate

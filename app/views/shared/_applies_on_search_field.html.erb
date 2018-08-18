@@ -1,0 +1,7 @@
+<%- if type == :month -%>
+  <%= f.month_field :applies_on, value: params[:applies_on] %>
+<%- elsif type == :week -%>
+  <%= f.month_field :applies_on, value: params[:applies_on] %>
+<%- elsif type == :year -%>
+  <%= f.year_field :applies_on, value: params[:applies_on] %>
+<%- end -%>

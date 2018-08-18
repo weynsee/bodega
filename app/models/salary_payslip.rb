@@ -1,4 +1,5 @@
 class SalaryPayslip < ApplicationRecord
+  include HasSearchQuery
   include HasInheritableRate
   include HasAppliesOn
   include HasSalaryType

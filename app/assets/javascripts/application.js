@@ -21,7 +21,7 @@ $(document).on('submit', 'form[method=get][data-turbolinks=true]', function(e) {
   e.preventDefault();
   e.stopImmediatePropagation();
   var form = $(this);
-  Turbolinks.visit(form.attr("action") + '?' + form.serialize());
+  Turbolinks.visit(form.attr("action") + '?' + form.find(':visible').serialize());
 });
 
 $(document).on('click', 'button[data-preview]', function(e) {
@@ -35,4 +35,10 @@ $(document).on('click', 'button[data-preview]', function(e) {
 $(document).on('input', 'form[data-preview] [data-preview=true]', function() {
   var form = $(this).parents('form');
   form.find('input[type=submit]').prop('disabled', true);
+});
+
+$(document).on('change', 'select[data-toggler]', function(e) {
+  $('[data-collapse]:not(:hidden)').hide();
+  var val = $(this).val();
+  $('[data-collapse=' + val + ']').show();
 });

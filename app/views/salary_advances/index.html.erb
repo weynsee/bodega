@@ -1,8 +1,17 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
       <h2>Salary advances</h2>
     </div>
+    <%= render 'shared/advances/search_form',
+      url: nesting_aware_salary_advances_path,
+      selected: params[:range],
+      type: %i(weekly half_monthly) %>
     <%= render 'table' %>
+    <div class="col-auto mr-auto">
+      <nav aria-label="Advances list navigation">
+        <%= pagy_nav_bootstrap(@pagy).html_safe %>
+      </nav>
+    </div>
   </div>
 </div>

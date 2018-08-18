@@ -1,4 +1,5 @@
 class SalaryAdvance < ApplicationRecord
+  include HasSearchQuery
   include HasAdvanceAppliesOn
   include HasSalaryType
   include HasPayslip
