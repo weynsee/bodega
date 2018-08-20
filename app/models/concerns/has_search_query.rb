@@ -6,7 +6,7 @@ module HasSearchQuery
       scope = where(nil)
       scope = scope.where(issue_date: issue_date) if issue_date.present?
       scope = scope.where(applies_on: applies_on) if applies_on.present?
-      scope = scope.where(payslip_column_name => true) if included_in_payslip.present?
+      scope = scope.where.not(payslip_column_name => nil) if included_in_payslip.present?
       scope
     end
 
