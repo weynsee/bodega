@@ -19,32 +19,28 @@
           <td>
             Deductions:
             <ul class="list-group list-group-flush">
-              <%- each_advance_billing_item(@payslip.advances) do |advance| -%>
-                <%- if !advance.is_a?(Array) -%>
-                  <%= render 'shared/receipts/billing_item', advance: advance %>
-                <%- else -%>
-                  <li class="list-group-item">
-                    <div class="d-flex">
-                      <div>
-                        <%= link_to_unless print_preview?,
-                          pluralize(advance.size, 'other advance'),
-                          '#',
-                          data: { toggle: 'collapse', target: '#rest' }
-                        %>
-                      </div>
-                      <div class="ml-auto">
-                        <%= number_with_precision(advance.sum(&:amount), precision: 2) %>
-                      </div>
+              <%- @payslip.advances.group_by(&:advance_type).each do |type, advances| -%>
+                <li class="list-group-item">
+                  <div class="d-flex">
+                    <div>
+                      <%= link_to_unless print_preview?,
+                        pluralize(advances.size, "#{type.humanize(capitalize: false)} advance"),
+                        '#',
+                        data: { toggle: 'collapse', target: "#rest-of-#{type}" }
+                      %>
                     </div>
-                    <%- unless print_preview? -%>
-                      <ul id="rest" class="collapse list-group">
-                        <%- advance.each do |other| -%>
-                          <%= render 'shared/receipts/billing_item', advance: other %>
-                        <%- end -%>
-                      </ul>
-                    <%- end -%>
-                  </li>
-                <%- end -%>
+                    <div class="ml-auto">
+                      <%= number_with_precision(advances.sum(&:amount), precision: 2) %>
+                    </div>
+                  </div>
+                  <%- unless print_preview? -%>
+                    <ul id="rest-of-<%= type %>" class="collapse list-group">
+                      <%- advances.each do |advance| -%>
+                        <%= render 'shared/receipts/billing_item', advance: advance %>
+                      <%- end -%>
+                    </ul>
+                  <%- end -%>
+                </li>
               <%- end -%>
             </ul>
           </td>
