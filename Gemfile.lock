@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/thomaspark/bootswatch.git
-  revision: 46b8d9f7131f7424e89a3d323f735614fb187e6c
+  revision: 647a8e4a8e7e1f603745cf5a71beb082001b1c0a
   specs:
     bootswatch (4.1.3)
 
@@ -49,7 +49,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (9.1.0)
+    autoprefixer-rails (9.1.2)
       execjs
     bindex (0.5.0)
     bootsnap (1.3.1)
@@ -91,7 +91,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     msgpack (1.2.4)
@@ -99,7 +99,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
-    pagy (0.16.0)
+    pagy (0.17.0)
     pg (1.0.0)
     popper_js (1.14.3)
     puma (3.12.0)
