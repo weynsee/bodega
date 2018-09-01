@@ -7,6 +7,10 @@ body:not(.print) {
   padding-top: 5rem;
 }
 
+body.print {
+  font-size: 20px;
+}
+
 .tab-content {
   margin: 1.5rem;
 }
