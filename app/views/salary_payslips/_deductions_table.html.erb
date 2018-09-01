@@ -23,7 +23,7 @@
         <td><%= number_to_currency advance.amount %></td>
       </tr>
     <%- end -%>
-    <%- if @payslip.half_monthly? -%>
+    <%- if @payslip.employee.cash_bond? -%>
       <tr>
         <td>Cash bond</td>
         <td>N/A</td>

@@ -2,10 +2,21 @@
   <%= f.text_field :name, required: true %>
   <%= f.number_field :rate, rate_field_value(@employee.rate, required: true) %>
   <%= f.form_group :rate_type do %>
-    <%- Employee.rate_types.each do |type, _| -%>
-      <%= f.radio_button :rate_type, type, inline: true, required: true %>
-    <%- end -%>
+    <%= f.radio_button :rate_type,
+      :weekly, inline: true,
+      required: true,
+      'data-toggler' => true
+    %>
+    <%= f.radio_button :rate_type,
+      :half_monthly,
+      inline: true,
+      required: true,
+      'data-toggler' => true
+    %>
   <% end %>
+  <div data-collapse="half_monthly" class="form-group <%= 'collapse' unless @employee.half_monthly? %>">
+    <%= f.check_box :cash_bond %>
+  </div>
   <%= f.number_field :overtime_rate,
     rate_field_value(
       @employee.overtime_rate,

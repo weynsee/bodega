@@ -30,13 +30,13 @@ class SalaryPayslip < ApplicationRecord
 
   def total_deductions
     total = applicable_advances.sum(:amount)
-    total += 100 if half_monthly?
+    total += 100 if employee.cash_bond?
     total
   end
 
   def total_deducted_amount
     total = advances.sum(:amount)
-    total += 100 if half_monthly?
+    total += 100 if employee.cash_bond?
     total
   end
 end

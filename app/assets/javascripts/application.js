@@ -37,7 +37,7 @@ $(document).on('input', 'form[data-preview] [data-preview=true]', function() {
   form.find('input[type=submit]').prop('disabled', true);
 });
 
-$(document).on('change', 'select[data-toggler]', function(e) {
+$(document).on('change', '[data-toggler]', function(e) {
   $('[data-collapse]:not(:hidden)').hide();
   var val = $(this).val();
   $('[data-collapse=' + val + ']').show();

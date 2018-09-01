@@ -46,7 +46,8 @@ class EmployeesController < ApplicationController
       :rice_allowance_rate,
       :month_end_rate,
       :year_end_rate,
-      :status
+      :status,
+      :cash_bond
     )
   end
 end
