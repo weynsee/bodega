@@ -10,6 +10,8 @@ class Employee < ApplicationRecord
   validates :year_end_rate, numericality: { allow_nil: true }
   validates :rate_type, inclusion: { in: rate_types.keys, message: :invalid }
 
+  after_validation :set_cash_bond
+
   scope :search, ->(name) { where("name ILIKE ?", "%#{name}%") }
 
   has_many :salary_advances, dependent: :nullify do
@@ -53,5 +55,11 @@ class Employee < ApplicationRecord
   def disallowed?(type)
     type = type.to_s.gsub(/_(payslips|advances)$/, '')
     !public_send("has_#{type}?") if respond_to?("has_#{type}?")
+  end
+
+  private
+
+  def set_cash_bond
+    self.cash_bond = false if !half_monthly?
   end
 end

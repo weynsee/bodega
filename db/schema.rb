@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_091701) do
+ActiveRecord::Schema.define(version: 2018_09_15_001719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2018_09_01_091701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "issue_date", null: false
+    t.boolean "cash_bond", default: false
     t.index ["employee_id", "applies_on"], name: "index_salary_payslips_on_employee_id_and_applies_on", unique: true
     t.index ["employee_id"], name: "index_salary_payslips_on_employee_id"
   end

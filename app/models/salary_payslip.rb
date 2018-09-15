@@ -16,6 +16,7 @@ class SalaryPayslip < ApplicationRecord
   has_many :salary_advances, dependent: :nullify
 
   after_initialize :set_salary_type, if: :new_record?
+  after_initialize :set_cash_bond, if: :new_record?
   after_initialize :set_default_applies_on, if: :new_record?
 
   alias_attribute :advances, :salary_advances
@@ -30,13 +31,19 @@ class SalaryPayslip < ApplicationRecord
 
   def total_deductions
     total = applicable_advances.sum(:amount)
-    total += 100 if employee.cash_bond?
+    total += 100 if cash_bond?
     total
   end
 
   def total_deducted_amount
     total = advances.sum(:amount)
-    total += 100 if employee.cash_bond?
+    total += 100 if cash_bond?
     total
+  end
+
+  private
+
+  def set_cash_bond
+    self.cash_bond = employee.cash_bond
   end
 end
