@@ -7,6 +7,15 @@ module PayslipsHelper
     ITEM
   end
 
+  def advance_billing_item_group(type, advances)
+    text = pluralize(advances.size, "#{type.humanize(capitalize: false)} advance")
+    if print_preview?
+      mini_breakdown = advances.map { |advance| "#{advance.issue_date.strftime('%m/%d')} - #{number_with_precision(advance.amount, precision: 2)}" }.join(', ')
+      text += " (#{mini_breakdown})"
+    end
+    text
+  end
+
   def format_attendance(payslip)
     "#{number_with_precision(payslip.send(payslip.attendance), precision: 2)} #{payslip.attendance.to_s.humanize(capitalize: false)}"
   end

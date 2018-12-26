@@ -32,7 +32,7 @@
                   <div class="d-flex">
                     <div>
                       <%= link_to_unless print_preview?,
-                        pluralize(advances.size, "#{type.humanize(capitalize: false)} advance"),
+                        advance_billing_item_group(type, advances),
                         '#',
                         data: { toggle: 'collapse', target: "#rest-of-#{type}" }
                       %>
