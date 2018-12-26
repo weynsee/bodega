@@ -1,11 +1,25 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-      <h2>Employees</h2>
-      <div class="mb-2 mb-md-0">
-        <%= link_to 'Add new employee', new_employee_path, class: 'btn btn-dark' %>
+  <div class="mb-2">
+    <%= bootstrap_form_with(
+      data: { turbolinks: true },
+      url: employees_path,
+      method: :get,
+      local: true,
+      layout: :inline
+    ) do |f| %>
+      <div class="input-group mr-2">
+        <%= f.select :rate_type,
+          rate_types_for_select,
+          { selected: params[:rate_type], include_blank: true },
+          data: { toggler: true }
+        %>
       </div>
-    </div>
+      <div>
+        <%= f.submit 'Search', class: 'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
     <div>
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -66,8 +80,16 @@
         </tbody>
       </table>
     </div>
-    <nav aria-label="Employee list navigation">
-      <%= pagy_nav_bootstrap(@pagy).html_safe %>
-    </nav>
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <nav aria-label="Employee list navigation">
+          <%= pagy_bootstrap_nav(@pagy).html_safe %>
+        </nav>
+      </div>
+      <div class="col-auto">
+        <%= link_to 'Add new employee',
+          new_employee_path(@employee), class: 'btn btn-secondary' %>
+      </div>
+    </div>
   </div>
 </div>

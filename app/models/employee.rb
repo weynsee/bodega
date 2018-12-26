@@ -12,8 +12,6 @@ class Employee < ApplicationRecord
 
   after_validation :set_cash_bond
 
-  scope :search, ->(name) { where("name ILIKE ?", "%#{name}%") }
-
   has_many :salary_advances, dependent: :nullify do
     def applies_for(type, period)
       where(salary_advances: { salary_type: type, applies_on: period })
@@ -43,6 +41,13 @@ class Employee < ApplicationRecord
     end
   end
   has_many :year_end_payslips, dependent: :nullify
+
+  def self.search(name: nil, rate_type: nil)
+    scope = where(nil)
+    scope = scope.where('name ILIKE ?', "%#{name}%") if name.present?
+    scope = scope.where(rate_type: rate_type) if rate_type.present?
+    scope
+  end
 
   def has_month_end?
     month_end_rate.present? && !month_end_rate.zero?

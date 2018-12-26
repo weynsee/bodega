@@ -1,6 +1,8 @@
 class EmployeesController < ApplicationController
   def index
-    scope = params[:name].present? ? Employee.search(params[:name]) : Employee.all
+    scope = params[:name].present? || params[:rate_type].present? ?
+      Employee.search(name: params[:name], rate_type: params[:rate_type]) :
+      Employee.all
     scope = scope.order(created_at: :desc)
     @pagy, @employees = pagy(scope, page: params[:page], items: 25)
   end
