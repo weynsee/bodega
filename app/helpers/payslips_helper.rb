@@ -10,8 +10,8 @@ module PayslipsHelper
   def advance_billing_item_group(type, advances)
     text = pluralize(advances.size, "#{type.humanize(capitalize: false)} advance")
     if print_preview?
-      mini_breakdown = advances.map { |advance| "#{advance.issue_date.strftime('%m/%d')} - #{number_with_precision(advance.amount, precision: 2)}" }.join(', ')
-      text += " (#{mini_breakdown})"
+      mini_breakdown = advances.map { |advance| "<span class=\"text-nowrap\">#{advance.issue_date.strftime('%m/%d')} - #{number_with_precision(advance.amount, precision: 2)}</span>" }.join(', ')
+      text += " <small>(#{mini_breakdown})</small>"
     end
     text
   end
