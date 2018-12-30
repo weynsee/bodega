@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/thomaspark/bootswatch.git
-  revision: 7f56f1e5b7ea0c55f873cb551432d87fcc3decab
+  revision: 87a42c17695d14c59cce6463db81e3aa4d7014b1
   specs:
-    bootswatch (4.1.3)
+    bootswatch (4.2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -54,10 +54,10 @@ GEM
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
-    bootstrap (4.1.3)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
+    bootstrap (4.2.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     bootstrap_form (4.0.0)
       rails (>= 5.0)
     builder (3.2.3)
@@ -146,6 +146,15 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.0.0)
+      ffi (~> 1.9.6)
+      rake
+    sassc-rails (2.1.0)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -182,7 +191,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
-  bootstrap (~> 4.1.1)
+  bootstrap (~> 4.2.1)
   bootstrap_form (>= 4.0.0.alpha1)
   bootswatch!
   byebug
