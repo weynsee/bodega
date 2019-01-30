@@ -24,7 +24,7 @@
                   <div class="d-flex">
                     <div>
                       <%= link_to_unless print_preview?,
-                        advance_billing_item_group(type, advances),
+                        advance_billing_item_group(type, advances).html_safe,
                         '#',
                         data: { toggle: 'collapse', target: "#rest-of-#{type}" }
                       %>
