@@ -41,10 +41,13 @@ class Employee < ApplicationRecord
     end
   end
   has_many :year_end_payslips, dependent: :nullify
+  has_many :attendances, dependent: :destroy
+
+  scope :name_like, ->(name) { where('name ILIKE ?', "%#{name}%") }
 
   def self.search(name: nil, rate_type: nil)
     scope = where(nil)
-    scope = scope.where('name ILIKE ?', "%#{name}%") if name.present?
+    scope = scope.merge(Employee.name_like(name)) if name.present?
     scope = scope.where(rate_type: rate_type) if rate_type.present?
     scope
   end

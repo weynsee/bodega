@@ -17,5 +17,7 @@ Rails.application.routes.draw do
     resources payslip, only: %i(index show destroy)
   end
 
+  post :attendances, to: 'attendances#create'
+
   root to: 'employees#index'
 end

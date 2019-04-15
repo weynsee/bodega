@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_001719) do
+ActiveRecord::Schema.define(version: 2019_04_15_054537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.integer "attendance_type", default: 0, null: false
+    t.float "amount", null: false
+    t.date "applies_on", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id", "applies_on", "attendance_type"], name: "index_attendance_on_employee_type_and_date", unique: true
+    t.index ["employee_id"], name: "index_attendances_on_employee_id"
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
@@ -162,6 +173,7 @@ ActiveRecord::Schema.define(version: 2018_09_15_001719) do
     t.index ["employee_id"], name: "index_year_end_payslips_on_employee_id"
   end
 
+  add_foreign_key "attendances", "employees"
   add_foreign_key "month_end_advances", "employees"
   add_foreign_key "month_end_advances", "month_end_payslips"
   add_foreign_key "month_end_payslips", "employees"
