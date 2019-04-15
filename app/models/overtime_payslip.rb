@@ -17,6 +17,10 @@ class OvertimePayslip < ApplicationRecord
     rate * hours
   end
 
+  def total_deductions
+    0
+  end
+
   def compute
     return if employee.blank?
     return if hours.blank? || applies_on.blank?
