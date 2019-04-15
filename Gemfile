@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootswatch', github: 'thomaspark/bootswatch'
 
-gem 'bootstrap', '~> 4.2.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', '>= 4.0.0.alpha1'
 gem 'pagy'
 
