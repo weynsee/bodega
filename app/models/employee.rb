@@ -41,7 +41,14 @@ class Employee < ApplicationRecord
     end
   end
   has_many :year_end_payslips, dependent: :nullify
-  has_many :attendances, dependent: :destroy
+  has_many :attendances, dependent: :destroy do
+    def for(type, start_date, end_date)
+      clause = where(attendance_type: type)
+      clause = clause.where('applies_on >= ?', start_date) if start_date.present?
+      clause = clause.where('applies_on <= ?', end_date) if end_date.present?
+      clause
+    end
+  end
 
   scope :name_like, ->(name) { where('name ILIKE ?', "%#{name}%") }
 

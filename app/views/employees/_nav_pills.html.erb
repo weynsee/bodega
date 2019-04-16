@@ -26,4 +26,17 @@
       <%- end -%>
     </div>
   </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link <%= 'active' if attendances_pill? %> dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendances</a>
+    <div class="dropdown-menu">
+      <%= link_to 'Regular Attendances',
+        employee_attendances_path(@employee, attendance_type: :regular),
+        class: 'dropdown-item'
+      %>
+      <%= link_to 'Overtime Attendances',
+        employee_attendances_path(@employee, attendance_type: :overtime),
+        class: 'dropdown-item'
+      %>
+    </div>
+  </li>
 </ul>

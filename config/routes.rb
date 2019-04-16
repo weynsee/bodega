@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     Payslips::TYPES.each do |payslip|
       resources payslip, except: %i(edit update)
     end
+
+    get :attendances, to: 'attendances#index'
   end
 
   Deductions::TYPES.each do |advance|
