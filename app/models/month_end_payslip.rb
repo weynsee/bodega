@@ -4,6 +4,7 @@ class MonthEndPayslip < ApplicationRecord
   include HasAppliesOn
   include HasDeductions
   include HasIssueDate
+  include HasAttendances
 
   validates :days_present, numericality: {
     greater_than_or_equal_to: 0, less_than: 32

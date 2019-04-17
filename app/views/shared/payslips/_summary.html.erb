@@ -1,8 +1,18 @@
 <%- if @payslip.valid? -%>
   <div class="col-md-4 order-md-2 mb-4">
-    <h4 class="d-flex justify-content-end align-items-center mb-3">
-      <span class="text-muted"><%= @payslip.date_range %></span>
-    </h4>
-    <%= render 'shared/payslips/total', rate_computation: rate_computation %>
+    <section>
+      <h4 class="d-flex justify-content-end align-items-center mb-3">
+        <span class="text-muted"><%= @payslip.date_range %></span>
+      </h4>
+      <%= render 'shared/payslips/total', rate_computation: rate_computation %>
+    </section>
+    <%- if show_attendances?(@payslip) -%>
+      <section>
+        <h4 class="d-flex justify-content-end align-items-center mb-3">
+          <span class="text-muted">Attendance</span>
+        </h4>
+        <%= render 'shared/payslips/attendance' %>
+      </section>
+    <%- end -%>
   </div>
 <%- end -%>

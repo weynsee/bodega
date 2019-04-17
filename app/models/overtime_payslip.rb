@@ -3,6 +3,7 @@ class OvertimePayslip < ApplicationRecord
   include HasInheritableRate
   include HasAppliesOn
   include HasIssueDate
+  include HasAttendances
 
   validates :hours, numericality: { greater_than_or_equal_to: 0 }
   validates :total, numericality: true
@@ -19,6 +20,10 @@ class OvertimePayslip < ApplicationRecord
 
   def total_deductions
     0
+  end
+
+  def attendance_type
+    :overtime
   end
 
   def compute

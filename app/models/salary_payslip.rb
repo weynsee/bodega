@@ -5,6 +5,7 @@ class SalaryPayslip < ApplicationRecord
   include HasSalaryType
   include HasDeductions
   include HasIssueDate
+  include HasAttendances
 
   validates :days_present, numericality: { greater_than_or_equal_to: 0 }
   validates :days_present, numericality: { less_than: 15 }, if: :half_monthly?

@@ -32,4 +32,8 @@ module PayslipsHelper
       'yearly'
     end
   end
+
+  def show_attendances?(payslip)
+    !payslip.is_a?(YearEndPayslip) && payslip.attendances.present?
+  end
 end
