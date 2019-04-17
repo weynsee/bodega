@@ -3,6 +3,9 @@
     <%= render 'employees/nav_pills' %>
     <div class="tab-content">
       <div class="tab-pane active">
+        <h4 class="mb-3">
+          Rice allowance payslips for <%= @employee.name %>
+        </h4>
         <%= render 'shared/payslips/search_form',
           url: nesting_aware_rice_allowance_payslips_path,
           type: :weekly %>

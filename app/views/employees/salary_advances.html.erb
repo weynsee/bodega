@@ -3,6 +3,9 @@
     <%= render 'employees/nav_pills' %>
     <div class="tab-content">
       <div class="tab-pane active">
+        <h4 class="mb-3">
+          Salary advances for <%= @employee.name %>
+        </h4>
         <%= render 'shared/advances/search_form',
           url: nesting_aware_salary_advances_path,
           selected: params[:range] || @employee.rate_type,
