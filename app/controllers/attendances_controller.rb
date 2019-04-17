@@ -1,5 +1,8 @@
 class AttendancesController < ApplicationController
+  include DateRangeHelper
+
   skip_forgery_protection only: :create
+  before_action :parse_date_range, only: :index
 
   def create
     if params[:name].present?
@@ -25,10 +28,21 @@ class AttendancesController < ApplicationController
         @pagy, @attendances = pagy(@attendances, page: params[:page], items: 25)
         render 'employees/attendances'
       }
+      format.js {
+        render 'employees/attendances'
+      }
     end
   end
 
   private
+
+  def parse_date_range
+    if params[:applies_on].present? && params[:applies_on_type].present?
+      date_range = parse_date_range_token(params[:applies_on], params[:applies_on_type])
+      params[:start_date] = date_range.start
+      params[:end_date] = date_range.end
+    end
+  end
 
   def attendance_params
     params.require(:attendance).permit(

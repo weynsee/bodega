@@ -42,3 +42,22 @@ $(document).on('change', '[data-toggler]', function(e) {
   var val = $(this).val();
   $('[data-collapse=' + val + ']').show();
 });
+
+function appendParams(el) {
+  var data = el.data('appendparams');
+  var param = {};
+  param[data.name] = el.val();
+  $(data.target).attr('data-params', $.param(param));
+}
+
+$(document).on('change', '[data-appendparams]', function() {
+  var el = $(this);
+  appendParams(el);
+});
+
+$(document).on('turbolinks:load', function() {
+  $('[data-appendparams]').each(function() {
+    var el = $(this);
+    appendParams(el);
+  });
+})

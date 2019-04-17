@@ -4,7 +4,20 @@
   id: 'payslip-form',
   data: { preview: true }
 ) do |f| %>
-  <%= f.number_field @payslip.attendance, required: true, data: { preview: true } %>
+  <%= f.number_field @payslip.attendance,
+    required: true,
+    append: link_to(
+      "Fill",
+      employee_attendances_path(
+        @employee,
+        attendance_type: @payslip.attendance == :hours ? :overtime : :regular,
+        applies_on_type: applies_on_type(@payslip)
+      ),
+      class: 'btn btn-secondary',
+      id: 'attendance',
+      remote: true
+    ),
+    data: { preview: true, 'attendance-sum': true } %>
   <%= render 'shared/issue_date_field',
     f: f,
     model: @payslip,
@@ -13,7 +26,10 @@
   <%= render 'shared/applies_on_field',
     f: f,
     model: @payslip,
-    options: { data: { preview: true }, required: true }
+    options: { data: { preview: true, appendParams: {
+      target: '#attendance',
+      name: 'applies_on'
+    } }, required: true }
   %>
   <div class="d-flex">
     <div class="p-2">

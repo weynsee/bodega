@@ -19,4 +19,17 @@ module PayslipsHelper
   def format_attendance(payslip)
     "#{number_with_precision(payslip.send(payslip.attendance), precision: 2)} #{payslip.attendance.to_s.humanize(capitalize: false)}"
   end
+
+  def applies_on_type(payslip)
+    case
+    when payslip.weekly?
+      'weekly'
+    when payslip.half_monthly?
+      'half_monthly'
+    when payslip.monthly?
+      'monthly'
+    when payslip.yearly?
+      'yearly'
+    end
+  end
 end

@@ -16,7 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootswatch', github: 'thomaspark/bootswatch'
 
 gem 'bootstrap', '~> 4.3.1'
-gem 'bootstrap_form', '>= 4.0.0.alpha1'
+gem 'bootstrap_form', '~> 4.2.0'
 gem 'pagy'
 
 gem 'bootsnap', '>= 1.1.0', require: false
