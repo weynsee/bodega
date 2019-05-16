@@ -46,6 +46,7 @@ class Employee < ApplicationRecord
       clause = where(attendance_type: type)
       clause = clause.where('applies_on >= ?', start_date) if start_date.present?
       clause = clause.where('applies_on <= ?', end_date) if end_date.present?
+      clause = clause.order(applies_on: :desc)
       clause
     end
   end
