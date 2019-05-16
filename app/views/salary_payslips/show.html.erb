@@ -8,7 +8,7 @@
         </div>
         <%= render 'payslip_header' %>
         <%= render 'receipt_breakdown',
-          rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{@payslip.days_present} (days present)" %>
+          rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} (rate) * #{number_with_precision(@payslip.days_present, precision: 2)} (days present)" %>
         <%= render 'shared/receipts/footer' %>
       </div>
     </div>

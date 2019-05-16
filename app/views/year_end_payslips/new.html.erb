@@ -11,7 +11,7 @@
             <%= render 'shared/payslips/details' %>
           </div>
           <%= render 'shared/payslips/summary',
-            rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} / 365 * #{@payslip.days_present} (days present)"
+            rate_computation: "#{number_with_precision(@payslip.rate, precision: 2)} / 365 * #{number_with_precision(@payslip.days_present, precision: 2)} (days present)"
           %>
         </div>
       </div>
